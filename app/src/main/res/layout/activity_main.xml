@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/white2"
+    tools:context=".MainActivity">
+
+    <!--左部导航-->
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="60dp"
+        android:orientation="vertical"
+        android:background="@color/white"
+        >
+        <LinearLayout
+            android:id="@+id/ll_Light"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_Light"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/selector_bg_light"/>
+            <TextView
+                android:id="@+id/tv_Light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="照明"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_ElecSystem"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_ElecSystem"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/selector_bg_device"/>
+            <TextView
+                android:id="@+id/tv_ElecSystem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="电器"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/ll_ElecEquipment"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_ElecEquipment"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/selector_bg_elec"
+                />
+            <TextView
+                android:id="@+id/tv_ElecEquipment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="水电"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="center"
+            android:id="@+id/ll_Other"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/iv_Other"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/selector_bg_safety"
+                />
+            <TextView
+                android:id="@+id/tv_Other"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="安全"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!--中间控制主界面 -->
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="7"
+        android:orientation="vertical"
+        >
+        <androidx.fragment.app.FragmentContainerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fcv"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+
+    <!--最右方状态显示-->
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="3"
+        android:background="@drawable/round_coner_off"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/user"
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Welcome Home,"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="N0morey"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <Button
+                        android:id="@+id/sendButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="发送随机数"
+                        android:layout_centerInParent="true"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        >
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/calendar"
+                            />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="16 May,2024"
+                            android:textSize="12sp"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+
+            >
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <com.example.home_car.BatteryView
+                    android:id="@+id/batteryView1"
+                    android:layout_width="20dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:padding="16dp">
+
+                <com.example.home_car.BatteryView
+                    android:id="@+id/batteryView2"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            >
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
