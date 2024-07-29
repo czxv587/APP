@@ -237,7 +237,7 @@ public class LivingRoomFragment extends Fragment {
     }
 
     private void updatePowerStatus() {
-        if (isPowerOn) {
+        if (isAirPowerOn) {
             Iv_switch.setSelected(true);
             Iv_aircon.setSelected(true);
         } else {
