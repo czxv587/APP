@@ -28,7 +28,7 @@ public class LivingRoomFragment extends Fragment {
     private String mParam2;
 
     private TextView temperatureTextView,Tv_model;
-    private LinearLayout increaseButton,decreaseButton,airswitch,modelswitch;
+    private LinearLayout increaseButton,decreaseButton,airswitch,modelswitch,LL_socketpower;
     private ImageView Iv_aircon,Iv_switch,Iv_model,Iv_socketpower,Iv_usbpower,Iv_colorglass,Iv_basspower,Iv_poweramplifier;
     private int temperature;
     private boolean isAirPowerOn;
@@ -94,6 +94,7 @@ public class LivingRoomFragment extends Fragment {
         Iv_colorglass=view.findViewById(R.id.iv_colerglass);
         Iv_basspower=view.findViewById(R.id.iv_basspower);
         Iv_poweramplifier=view.findViewById(R.id.iv_poweramplifier);
+        LL_socketpower=view.findViewById(R.id.ll_socketpower);
 
         sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         temperature = sharedPreferences.getInt(TEMPERATURE_KEY, MIN_TEMPERATURE);
@@ -105,9 +106,15 @@ public class LivingRoomFragment extends Fragment {
         isBassPowerOn = sharedPreferences.getBoolean(BASSPOWER_KEY, false);
         isPowerAmplifierOn = sharedPreferences.getBoolean(POWERAMPLIFIER_KEY, false);
         updateTemperatureDisplay();
-        updatePowerStatus();
-        updateModeStatus();
-        fetchAndUpdateHardwareData();
+        updateAirPowerStatus();
+        updateAirModeStatus();
+        updateSocketPowerStatus();
+        updateUsbPowerStatus();
+        updateColorGlassStatus();
+        updateBassPowerStatus();
+        updatePowerAmplifierStatus();
+
+//        fetchAndUpdateHardwareData();//从硬件获取数据更新UI
 
         increaseButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,7 +144,7 @@ public class LivingRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isAirPowerOn = !isAirPowerOn;
-                updatePowerStatus();
+                updateAirPowerStatus();
                 savePreferences();
                 HardwareController.sendPowerUpdate(isAirPowerOn);
             }
@@ -146,16 +153,16 @@ public class LivingRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isCoolMode = !isCoolMode;
-                updateModeStatus();
+                updateAirModeStatus();
                 savePreferences();
                 HardwareController.sendModeUpdate(isCoolMode);
             }
         });
-        Iv_socketpower.setOnClickListener(new View.OnClickListener() {
+        LL_socketpower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isSocketPowerOn = !isSocketPowerOn;
-                updateModeStatus();
+                updateSocketPowerStatus();
                 savePreferences();
                 HardwareController.sendModeUpdate(isSocketPowerOn);
             }
@@ -164,7 +171,7 @@ public class LivingRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isUsbPowerOn = !isUsbPowerOn;
-                updateModeStatus();
+                updateUsbPowerStatus();
                 savePreferences();
                 HardwareController.sendModeUpdate(isUsbPowerOn);
             }
@@ -173,7 +180,7 @@ public class LivingRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isColorGlassOn = !isColorGlassOn;
-                updateModeStatus();
+                updateColorGlassStatus();
                 savePreferences();
                 HardwareController.sendModeUpdate(isColorGlassOn);
             }
@@ -182,7 +189,7 @@ public class LivingRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isBassPowerOn = !isBassPowerOn;
-                updateModeStatus();
+                updateBassPowerStatus();
                 savePreferences();
                 HardwareController.sendModeUpdate(isBassPowerOn);
             }
@@ -191,7 +198,7 @@ public class LivingRoomFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isPowerAmplifierOn = !isPowerAmplifierOn;
-                updateModeStatus();
+                updatePowerAmplifierStatus();
                 savePreferences();
                 HardwareController.sendModeUpdate(isPowerAmplifierOn);
             }
@@ -199,34 +206,63 @@ public class LivingRoomFragment extends Fragment {
         return view;
     }
 
-    private void fetchAndUpdateHardwareData() {
-        HardwareData hardwareData = HardwareData.fetchHardwareData();
-
-        // 更新UI
-        temperatureTextView.setText(String.valueOf(hardwareData.getTemperature()));
-        if (hardwareData.isSwitchState()) {
-            Iv_switch.setSelected(true);
-            Iv_aircon.setSelected(true);
+    private void updatePowerAmplifierStatus() {
+        if (isPowerAmplifierOn) {
+            Iv_poweramplifier.setSelected(true);
         } else {
-            Iv_switch.setSelected(false);
-            Iv_aircon.setSelected(false);
+            Iv_poweramplifier.setSelected(false);
         }
     }
 
-    private void savePreferences() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(TEMPERATURE_KEY, temperature);
-        editor.putBoolean(AIRPOWER_KEY, isAirPowerOn);
-        editor.putBoolean(MODE_KEY, isCoolMode);
-        editor.putBoolean(MODE_KEY, isCoolMode);
-        editor.putBoolean(MODE_KEY, isCoolMode);
-        editor.putBoolean(MODE_KEY, isCoolMode);
-        editor.putBoolean(MODE_KEY, isCoolMode);
-        editor.putBoolean(MODE_KEY, isCoolMode);
-        editor.apply();
+    private void updateBassPowerStatus() {
+        if (isBassPowerOn) {
+            Iv_basspower.setSelected(true);
+        } else {
+            Iv_basspower.setSelected(false);
+        }
     }
 
-    private void updateModeStatus() {
+
+    private void updateColorGlassStatus() {
+        if (isColorGlassOn) {
+            Iv_colorglass.setSelected(true);
+        } else {
+            Iv_colorglass.setSelected(false);
+        }
+    }
+
+    private void updateUsbPowerStatus() {
+        if (isUsbPowerOn) {
+            Iv_usbpower.setSelected(true);
+        } else {
+            Iv_usbpower.setSelected(false);
+        }
+    }
+
+    private void updateSocketPowerStatus() {
+        if (isSocketPowerOn) {
+            Iv_socketpower.setSelected(true);
+        } else {
+            Iv_socketpower.setSelected(false);
+        }
+    }
+
+//    private void fetchAndUpdateHardwareData() {
+//        HardwareData hardwareData = HardwareData.fetchHardwareData();
+//
+//        // 更新UI
+//        temperatureTextView.setText(String.valueOf(hardwareData.getTemperature()));
+//        if (hardwareData.isSwitchState()) {
+//            Iv_switch.setSelected(true);
+//            Iv_aircon.setSelected(true);
+//        } else {
+//            Iv_switch.setSelected(false);
+//            Iv_aircon.setSelected(false);
+//        }
+//    }
+
+
+    private void updateAirModeStatus() {
         if (isCoolMode) {
             Iv_model.setSelected(true);
             Tv_model.setText("制冷");
@@ -236,7 +272,7 @@ public class LivingRoomFragment extends Fragment {
         }
     }
 
-    private void updatePowerStatus() {
+    private void updateAirPowerStatus() {
         if (isAirPowerOn) {
             Iv_switch.setSelected(true);
             Iv_aircon.setSelected(true);
@@ -248,6 +284,17 @@ public class LivingRoomFragment extends Fragment {
 
     private void updateTemperatureDisplay() {
         temperatureTextView.setText(String.valueOf(temperature));
-
+    }
+    private void savePreferences() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(TEMPERATURE_KEY, temperature);
+        editor.putBoolean(AIRPOWER_KEY, isAirPowerOn);
+        editor.putBoolean(MODE_KEY, isCoolMode);
+        editor.putBoolean(SOCKETPOWER_KEY, isSocketPowerOn);
+        editor.putBoolean(USBPOWER_KEY, isUsbPowerOn);
+        editor.putBoolean(COLORGLASS_KEY, isColorGlassOn);
+        editor.putBoolean(BASSPOWER_KEY, isBassPowerOn);
+        editor.putBoolean(POWERAMPLIFIER_KEY, isPowerAmplifierOn);
+        editor.apply();
     }
 }

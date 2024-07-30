@@ -253,7 +253,7 @@
                 <ImageView
                     android:id="@+id/iv_socketpower"
                     android:layout_width="80dp"
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_icebox"
                     />
@@ -284,7 +284,7 @@
                 <ImageView
                     android:id="@+id/iv_usbpower"
                     android:layout_width="80dp"
-                    android:layout_height="100dp"
+                    android:layout_height="80dp"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_icebox" />
 
@@ -354,31 +354,17 @@
 
                 <ImageView
                     android:id="@+id/iv_poweramplifier"
-                    android:layout_width="100dp"
-                    android:layout_height="60dp"
-
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/selector_microoven"
-                    />
-                <TextView
-                    android:id="@+id/tv_poweramplifier"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="功放电源"
                     />
 
                 <ImageView
                     android:id="@+id/iv_basspower"
-                    android:layout_width="100dp"
-                    android:layout_height="60dp"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
                     android:background="@drawable/selector_microoven" />
-                <TextView
-                    android:id="@+id/tv_basspower"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="低音电源"
-                    />
+
 
 
 
