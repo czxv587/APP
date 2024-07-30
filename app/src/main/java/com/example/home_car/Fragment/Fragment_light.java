@@ -38,9 +38,12 @@ public class Fragment_light extends Fragment {
     private static final String LIGHT_STATUS2 = "light_status2";
     private static final String LIGHT_STATUS3 = "light_status3";
     private static final String LIGHT_STATUS4 = "light_status4";
-    private LinearLayout LL_light1, LL_light2, LL_light3, LL_light4;
-    private ImageView Iv_light1, Iv_light2, Iv_light3, Iv_light4;
-    private TextView Tv_light1, Tv_light2, Tv_light3, Tv_light4;
+    private static final String LIGHT_STATUS5 = "light_status5";
+    private static final String LIGHT_STATUS6 = "light_status6";
+    private static final String LIGHT_STATUS7 = "light_status7";
+    private LinearLayout LL_light1, LL_light2, LL_light3, LL_light4,LL_light5, LL_light6, LL_light7;
+    private ImageView Iv_light1, Iv_light2, Iv_light3, Iv_light4, Iv_light5, Iv_light6, Iv_light7;
+    private TextView Tv_light1, Tv_light2, Tv_light3, Tv_light4, Tv_light5, Tv_light6, Tv_light7;
 
     FragmentManager fragmentManager;
 
@@ -79,33 +82,54 @@ public class Fragment_light extends Fragment {
         Tv_light2=view.findViewById(R.id.tv_light2);
         Tv_light3=view.findViewById(R.id.tv_light3);
         Tv_light4=view.findViewById(R.id.tv_light4);
+        Tv_light5=view.findViewById(R.id.tv_light5);
+        Tv_light6=view.findViewById(R.id.tv_light6);
+        Tv_light7=view.findViewById(R.id.tv_light7);
         LL_light1 = view.findViewById(R.id.ll_light1);
         LL_light2 = view.findViewById(R.id.ll_light2);
         LL_light3 = view.findViewById(R.id.ll_light3);
         LL_light4 = view.findViewById(R.id.ll_light4);
+        LL_light5 = view.findViewById(R.id.ll_light5);
+        LL_light6 = view.findViewById(R.id.ll_light6);
+        LL_light7 = view.findViewById(R.id.ll_light7);
         Iv_light1 = view.findViewById(R.id.iv_light1);
         Iv_light2 = view.findViewById(R.id.iv_light2);
         Iv_light3 = view.findViewById(R.id.iv_light3);
         Iv_light4 = view.findViewById(R.id.iv_light4);
+        Iv_light5 = view.findViewById(R.id.iv_light5);
+        Iv_light6 = view.findViewById(R.id.iv_light6);
+        Iv_light7 = view.findViewById(R.id.iv_light7);
 
         // 从SharedPreferences中恢复灯光开关状态
         boolean lightStatus1 = sharedPreferences.getBoolean(LIGHT_STATUS1, false);
         boolean lightStatus2 = sharedPreferences.getBoolean(LIGHT_STATUS2, false);
         boolean lightStatus3 = sharedPreferences.getBoolean(LIGHT_STATUS3, false);
         boolean lightStatus4 = sharedPreferences.getBoolean(LIGHT_STATUS4, false);
+        boolean lightStatus5 = sharedPreferences.getBoolean(LIGHT_STATUS5, false);
+        boolean lightStatus6 = sharedPreferences.getBoolean(LIGHT_STATUS6, false);
+        boolean lightStatus7 = sharedPreferences.getBoolean(LIGHT_STATUS7, false);
 
         updateLightImagview(Iv_light1,lightStatus1);
         updateLightImagview(Iv_light2,lightStatus2);
         updateLightImagview(Iv_light3,lightStatus3);
         updateLightImagview(Iv_light4,lightStatus4);
+        updateLightImagview(Iv_light5,lightStatus5);
+        updateLightImagview(Iv_light6,lightStatus6);
+        updateLightImagview(Iv_light7,lightStatus7);
         updateLightLinearLayout(LL_light1,lightStatus1);
         updateLightLinearLayout(LL_light2,lightStatus2);
         updateLightLinearLayout(LL_light3,lightStatus3);
         updateLightLinearLayout(LL_light4,lightStatus4);
+        updateLightLinearLayout(LL_light2,lightStatus5);
+        updateLightLinearLayout(LL_light3,lightStatus6);
+        updateLightLinearLayout(LL_light4,lightStatus7);
         updateLightTextview(Tv_light1,lightStatus1);
         updateLightTextview(Tv_light2,lightStatus2);
         updateLightTextview(Tv_light3,lightStatus3);
         updateLightTextview(Tv_light4,lightStatus4);
+        updateLightTextview(Tv_light2,lightStatus5);
+        updateLightTextview(Tv_light3,lightStatus6);
+        updateLightTextview(Tv_light4,lightStatus7);
         LL_light1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -155,6 +179,42 @@ public class Fragment_light extends Fragment {
                 updateLightImagview(Iv_light4,currentStatus);
                 updateLightLinearLayout(LL_light4,currentStatus);
                 updateLightTextview(Tv_light4,currentStatus);
+            }
+        });
+        LL_light5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS5, false);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(LIGHT_STATUS5, currentStatus);
+                editor.apply();
+                updateLightImagview(Iv_light5,currentStatus);
+                updateLightLinearLayout(LL_light5,currentStatus);
+                updateLightTextview(Tv_light5,currentStatus);
+            }
+        });
+        LL_light6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS6, false);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(LIGHT_STATUS6, currentStatus);
+                editor.apply();
+                updateLightImagview(Iv_light6,currentStatus);
+                updateLightLinearLayout(LL_light6,currentStatus);
+                updateLightTextview(Tv_light6,currentStatus);
+            }
+        });
+        LL_light7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS7, false);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(LIGHT_STATUS7, currentStatus);
+                editor.apply();
+                updateLightImagview(Iv_light7,currentStatus);
+                updateLightLinearLayout(LL_light7,currentStatus);
+                updateLightTextview(Tv_light7,currentStatus);
             }
         });
 

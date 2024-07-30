@@ -9,107 +9,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="20dp"
         android:orientation="horizontal"
+        android:background="@drawable/round_coner_off"
         android:layout_weight="1"
         >
-        <LinearLayout
-            android:id="@+id/ll_aircon"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1"
-            >
-            <ImageView
-                android:id="@+id/iv_aircon"
-                android:layout_width="200dp"
-                android:layout_height="100dp"
-                android:background="@drawable/selector_aircon"
-                />
-            <TextView
-                android:id="@+id/tv_aircon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="安全监控"
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/ll_icebox"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@color/grey"
-            android:layout_weight="1"
-            >
-            <ImageView
-                android:id="@+id/iv_icebox"
-                android:layout_width="200dp"
-                android:layout_height="100dp"
-                android:background="@drawable/selector_icebox"
-                />
-            <TextView
-                android:id="@+id/tv_icebox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="水泵"
-                />
-        </LinearLayout>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:layout_weight="1"
-        >
-        <LinearLayout
-            android:id="@+id/ll_microoven"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:background="@color/grey"
-            android:layout_weight="1"
-            >
-            <ImageView
-                android:id="@+id/iv_microoven"
-                android:layout_width="200dp"
-                android:layout_height="100dp"
-                android:background="@drawable/selector_microoven"
-                />
-            <TextView
-                android:id="@+id/tv_microoven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="..................."
-                />
-        </LinearLayout>
-        <LinearLayout
-            android:id="@+id/ll_inducooker"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="@color/grey"
-            android:gravity="center"
-            android:layout_weight="1"
-            >
-            <ImageView
-                android:id="@+id/iv_inducooker"
-                android:layout_width="200dp"
-                android:layout_height="100dp"
-                android:background="@drawable/selector_inducooker"
-                />
-            <TextView
-                android:id="@+id/tv_inducooker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text=".................."
-                />
-        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

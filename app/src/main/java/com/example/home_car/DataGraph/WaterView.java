@@ -1,11 +1,14 @@
-package com.example.home_car;
+package com.example.home_car.DataGraph;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class WaterView extends View {
+import com.example.home_car.R;
+
+public class
+WaterView extends View {
     private Paint paint;
     private int batteryLevel = 100; // 默认电池电量为100%
 

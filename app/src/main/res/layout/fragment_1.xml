@@ -35,7 +35,7 @@
                 <ImageView
                     android:id="@+id/iv_light1"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_height="54dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:background="@drawable/selector_livingroom" />
@@ -45,14 +45,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="livingroom" />
+                    android:text="七彩氛围灯带" />
 
 
 
             </LinearLayout>
 
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -74,17 +73,94 @@
                 <ImageView
                     android:id="@+id/iv_light2"
                     android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_height="54dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_bathroom" />
+                    android:background="@drawable/selector_livingroom" />
 
                 <TextView
                     android:id="@+id/tv_light2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="livingroom" />
+                    android:text="灯带" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_light3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/selector_round_corner"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_light3"
+                    android:layout_width="50dp"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/selector_livingroom" />
+
+                <TextView
+                    android:id="@+id/tv_light3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="舱灯" />
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_light4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/selector_round_corner"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_light4"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/selector_bathroom" />
+
+                <TextView
+                    android:id="@+id/tv_light4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="尾门照明" />
 
 
             </LinearLayout>
@@ -106,7 +182,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/ll_light3"
+                android:id="@+id/ll_light5"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -117,7 +193,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/iv_light3"
+                    android:id="@+id/iv_light5"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
@@ -125,11 +201,48 @@
                     android:background="@drawable/selector_dininngroom" />
 
                 <TextView
-                    android:id="@+id/tv_light3"
+                    android:id="@+id/tv_light5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="livingroom" />
+                    android:text="射灯" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_light6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/selector_round_corner"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_light6"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/selector_dininngroom" />
+
+                <TextView
+                    android:id="@+id/tv_light6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="阅读灯" />
 
 
             </LinearLayout>
@@ -144,7 +257,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/ll_light4"
+                android:id="@+id/ll_light7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
@@ -155,7 +268,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:id="@+id/iv_light4"
+                    android:id="@+id/iv_light7"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
@@ -163,11 +276,11 @@
                     android:background="@drawable/selector_bedroom" />
 
                 <TextView
-                    android:id="@+id/tv_light4"
+                    android:id="@+id/tv_light7"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="livingroom" />
+                    android:text="LED长条灯" />
 
 
             </LinearLayout>

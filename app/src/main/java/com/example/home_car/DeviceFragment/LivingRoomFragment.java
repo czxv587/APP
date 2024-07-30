@@ -41,7 +41,7 @@ public class LivingRoomFragment extends Fragment {
     private final int MIN_TEMPERATURE = 16;
     private final int MAX_TEMPERATURE = 30;
     private SharedPreferences sharedPreferences;
-    private static final String PREFS_NAME = "temperature_prefs";
+    private static final String PREFS_NAME = "Livingroom";
     private static final String TEMPERATURE_KEY = "current_temperature";
     private static final String AIRPOWER_KEY = "airpower_status";
     private static final String MODE_KEY = "mode_status";

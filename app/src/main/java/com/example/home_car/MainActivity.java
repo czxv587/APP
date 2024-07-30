@@ -8,16 +8,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.home_car.DataGraph.BatteryView;
 import com.example.home_car.DataSender.DataSend;
 import com.example.home_car.Fragment.Fragment_device;
 import com.example.home_car.Fragment.Fragment_waterelec;
 import com.example.home_car.Fragment.Fragment_light;
-import com.example.home_car.Fragment.Fragment_other;
+import com.example.home_car.Fragment.Fragment_safety;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 resetleftstate();
                 fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                Fragment_other fragment4= Fragment_other.newInstance("","");
+                Fragment_safety fragment4= Fragment_safety.newInstance("","");
                 fragmentTransaction.replace(R.id.fcv,fragment4).commit();
                 Iv_other.setSelected(true);
                 Tv_other.setTextColor(getResources().getColor(R.color.black1));

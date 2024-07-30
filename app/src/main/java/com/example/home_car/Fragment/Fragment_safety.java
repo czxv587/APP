@@ -11,19 +11,19 @@ import android.view.ViewGroup;
 import com.example.home_car.R;
 
 
-public class Fragment_other extends Fragment {
+public class Fragment_safety extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
     private String mParam1;
     private String mParam2;
 
-    public Fragment_other() {
+    public Fragment_safety() {
         // Required empty public constructor
     }
 
-    public static Fragment_other newInstance(String param1, String param2) {
-        Fragment_other fragment = new Fragment_other();
+    public static Fragment_safety newInstance(String param1, String param2) {
+        Fragment_safety fragment = new Fragment_safety();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

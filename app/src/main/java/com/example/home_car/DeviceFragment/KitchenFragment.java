@@ -1,5 +1,6 @@
 package com.example.home_car.DeviceFragment;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.home_car.DataSender.HardwareController;
 import com.example.home_car.R;
 
 public class KitchenFragment extends Fragment {
@@ -21,29 +23,20 @@ public class KitchenFragment extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    private TextView temperatureTextView,Tv_model;
-    private LinearLayout LL_inducooker,LL_;
-    private ImageView Iv_aircon,Iv_switch,Iv_model,Iv_socketpower,Iv_usbpower,Iv_colorglass,Iv_basspower,Iv_poweramplifier;
-    private int temperature;
-    private boolean isAirPowerOn;
-    private boolean isCoolMode;
-    private boolean isSocketPowerOn;
-    private boolean isUsbPowerOn;
-    private boolean isColorGlassOn;
-    private boolean isBassPowerOn;
-    private boolean isPowerAmplifierOn;
-    private final int MIN_TEMPERATURE = 16;
-    private final int MAX_TEMPERATURE = 30;
+    private LinearLayout LL_inducooker,LL_icebox,LL_hotcup,LL_Rangehood;
+    private ImageView Iv_inducooker,Iv_icebox,Iv_hotcup,Iv_Rangehood;
+
+    private boolean isInducookerOn;
+    private boolean isIceboxOn;
+    private boolean isHotcupOn;
+    private boolean isRangehoodOn;
+
     private SharedPreferences sharedPreferences;
-    private static final String PREFS_NAME = "temperature_prefs";
-    private static final String TEMPERATURE_KEY = "current_temperature";
-    private static final String AIRPOWER_KEY = "airpower_status";
-    private static final String MODE_KEY = "mode_status";
-    private static final String SOCKETPOWER_KEY = "socketpower_status";
-    private static final String USBPOWER_KEY = "usbpower_status";
-    private static final String COLORGLASS_KEY = "clorglass_status";
-    private static final String BASSPOWER_KEY = "basspower_status";
-    private static final String POWERAMPLIFIER_KEY = "poweramplifier_status";
+    private static final String PREFS_NAME = "Kitchen";
+    private static final String INDUCOOKER_KEY = "inducooker_status";
+    private static final String ICEBOX_KEY = "icebox_status";
+    private static final String HOTCUP_KEY = "hotcup_status";
+    private static final String RANGEHOOD_KEY = "rangehood_status";
 
     public KitchenFragment() {
         // Required empty public constructor
@@ -73,7 +66,108 @@ public class KitchenFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kitchen, container, false);
 
+        Iv_inducooker=view.findViewById(R.id.iv_inducooker);
+        Iv_hotcup=view.findViewById(R.id.iv_hotcup);
+        Iv_icebox=view.findViewById(R.id.iv_icebox);
+        Iv_Rangehood=view.findViewById(R.id.iv_Rangehood);
+        LL_inducooker=view.findViewById(R.id.ll_inducooker);
+        LL_hotcup=view.findViewById(R.id.ll_hotcup);
+        LL_icebox=view.findViewById(R.id.ll_icebox);
+        LL_Rangehood=view.findViewById(R.id.ll_Rangehood);
+
+
+        sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        isIceboxOn = sharedPreferences.getBoolean(ICEBOX_KEY, false);
+        isHotcupOn = sharedPreferences.getBoolean(HOTCUP_KEY, false);
+        isInducookerOn = sharedPreferences.getBoolean(INDUCOOKER_KEY, false);
+        isRangehoodOn = sharedPreferences.getBoolean(RANGEHOOD_KEY, false);
+
+        updateIceboxStatus();
+        updateHotcupStatus();
+        updateInducookerStatus();
+        updateRangehoodStatus();
+
+//        fetchAndUpdateHardwareData();//从硬件获取数据更新UI
+
+
+        LL_inducooker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isInducookerOn = !isInducookerOn;
+                updateInducookerStatus();
+                savePreferences();
+                HardwareController.sendPowerUpdate(isInducookerOn);
+            }
+        });
+        LL_icebox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isIceboxOn = !isIceboxOn;
+                updateIceboxStatus();
+                savePreferences();
+                HardwareController.sendModeUpdate(isIceboxOn);
+            }
+        });
+        LL_hotcup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isHotcupOn = !isHotcupOn;
+                updateHotcupStatus();
+                savePreferences();
+                HardwareController.sendModeUpdate(isHotcupOn);
+            }
+        });
+        LL_Rangehood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                isRangehoodOn = !isRangehoodOn;
+                updateRangehoodStatus();
+                savePreferences();
+                HardwareController.sendModeUpdate(isRangehoodOn);
+            }
+        });
+
 
         return view;
+    }
+    private void updateInducookerStatus() {
+        if (isInducookerOn) {
+            Iv_inducooker.setSelected(true);
+        } else {
+            Iv_inducooker.setSelected(false);
+        }
+    }
+
+
+    private void updateHotcupStatus() {
+        if (isHotcupOn) {
+            Iv_hotcup.setSelected(true);
+        } else {
+            Iv_hotcup.setSelected(false);
+        }
+    }
+
+    private void updateIceboxStatus() {
+        if (isIceboxOn) {
+            Iv_icebox.setSelected(true);
+        } else {
+            Iv_icebox.setSelected(false);
+        }
+    }
+
+    private void updateRangehoodStatus() {
+        if (isRangehoodOn) {
+            Iv_Rangehood.setSelected(true);
+        } else {
+            Iv_Rangehood.setSelected(false);
+        }
+    }
+    private void savePreferences() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(HOTCUP_KEY, isHotcupOn);
+        editor.putBoolean(ICEBOX_KEY, isIceboxOn);
+        editor.putBoolean(INDUCOOKER_KEY, isInducookerOn);
+        editor.putBoolean(RANGEHOOD_KEY, isRangehoodOn);
+        editor.apply();
     }
 }
