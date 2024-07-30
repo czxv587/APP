@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.home_car.DataSender.HardwareController;
 import com.example.home_car.R;
 
 
@@ -23,18 +24,15 @@ public class Fragment_waterelec extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private static final String SHARED_PREFS = "EquipPreferences";
-    private static final String AIRCON_STATUS = "aircon_status";
-    private static final String ICEBOX_STATUS = "icebox_status";
-    private static final String MICROOVEN_STATUS = "microoven_status";
-
-    private LinearLayout LL_aircon,LL_microoven,LL_icebox;
-    private ImageView Iv_aircon,Iv_icebox,Iv_microoven;
-    private TextView Tv_aircon,Tv_icebox,Tv_microoven;
-
     private String mParam1;
     private String mParam2;
 
+    private ImageView Iv_waterPump,Iv_inverter;
+    private boolean iswaterPumpOn;
+    private boolean isInverterOn;
+    private SharedPreferences sharedPreferences;
+    private static final String WATERPUMP_KEY = "waterPump_status";
+    private static final String INVERTER_KEY = "inverter_status";
 
     public Fragment_waterelec() {
         // Required empty public constructor
@@ -63,59 +61,35 @@ public class Fragment_waterelec extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_3, container, false);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
 
-        // 获取灯光开关控件
-        LL_aircon = view.findViewById(R.id.ll_aircon);
-        LL_icebox = view.findViewById(R.id.ll_icebox);
-        LL_microoven = view.findViewById(R.id.ll_microoven);
+        Iv_waterPump = view.findViewById(R.id.iv_waterPump);
+        Iv_inverter = view.findViewById(R.id.iv_inverter);
 
-        Iv_aircon = view.findViewById(R.id.iv_aircon);
-        Iv_icebox = view.findViewById(R.id.iv_icebox);
-        Iv_microoven = view.findViewById(R.id.iv_microoven);
+        sharedPreferences = getActivity().getSharedPreferences(WATERPUMP_KEY, Context.MODE_PRIVATE);
+        iswaterPumpOn = sharedPreferences.getBoolean(WATERPUMP_KEY, false);
+        isInverterOn = sharedPreferences.getBoolean(INVERTER_KEY,false);
+        updateWaterPumpStatus();
+        updateInverterStatus();
 
-        // 从SharedPreferences中恢复灯光开关状态
-        boolean lightStatus1 = sharedPreferences.getBoolean(AIRCON_STATUS, false);
-        boolean lightStatus2 = sharedPreferences.getBoolean(ICEBOX_STATUS, false);
-        boolean lightStatus3 = sharedPreferences.getBoolean(MICROOVEN_STATUS, false);
-
-        updateLightImageView(Iv_aircon, lightStatus1);
-        updateLightImageView(Iv_icebox, lightStatus2);
-        updateLightImageView(Iv_microoven, lightStatus3);
-
-        LL_aircon.setOnClickListener(new View.OnClickListener() {
+        Iv_waterPump.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(AIRCON_STATUS, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(AIRCON_STATUS, currentStatus);
-                editor.apply();
-                updateLightImageView(Iv_aircon, currentStatus);
+                iswaterPumpOn =!iswaterPumpOn;
+                updateWaterPumpStatus();
+                savePreferences();
+                HardwareController.sendModeUpdate(iswaterPumpOn);
             }
         });
 
-        LL_icebox.setOnClickListener(new View.OnClickListener() {
+        Iv_inverter.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(ICEBOX_STATUS, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(ICEBOX_STATUS, currentStatus);
-                editor.apply();
-                updateLightImageView(Iv_icebox, currentStatus);
+            public void onClick(View v){
+                isInverterOn =!isInverterOn;
+                updateInverterStatus();
+                savePreferences();
+                HardwareController.sendModeUpdate(isInverterOn);
             }
         });
-
-        LL_microoven.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(MICROOVEN_STATUS, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(MICROOVEN_STATUS, currentStatus);
-                editor.apply();
-                updateLightImageView(Iv_microoven, currentStatus);
-            }
-        });
-
 
 
         return view;
@@ -133,5 +107,27 @@ public class Fragment_waterelec extends Fragment {
         } else {
             imageView.setSelected(false); // 假设light_off是关灯时的图标
         }
+    }
+
+    private void updateWaterPumpStatus() {
+        if (iswaterPumpOn) {
+            Iv_waterPump.setSelected(true);
+        } else {
+            Iv_waterPump.setSelected(false);
+        }
+    }
+
+    private void updateInverterStatus() {
+        if (isInverterOn) {
+            Iv_inverter.setSelected(true);
+        } else {
+            Iv_inverter.setSelected(false);
+        }
+    }
+    private void savePreferences() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(WATERPUMP_KEY, iswaterPumpOn);
+        editor.putBoolean(INVERTER_KEY,isInverterOn);
+        editor.apply();
     }
 }
