@@ -38,7 +38,7 @@
                     android:layout_height="54dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_livingroom" />
+                    android:background="@drawable/selector_qicaifenweideng" />
 
                 <TextView
                     android:id="@+id/tv_light1"
@@ -76,7 +76,7 @@
                     android:layout_height="54dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_livingroom" />
+                    android:background="@drawable/selector_dengdai" />
 
                 <TextView
                     android:id="@+id/tv_light2"
@@ -114,7 +114,7 @@
                     android:layout_height="54dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_livingroom" />
+                    android:background="@drawable/selector_cangdeng" />
 
                 <TextView
                     android:id="@+id/tv_light3"
@@ -153,7 +153,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_bathroom" />
+                    android:background="@drawable/selector_weimenzhaomin" />
 
                 <TextView
                     android:id="@+id/tv_light4"
@@ -198,7 +198,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_dininngroom" />
+                    android:background="@drawable/selector_shedeng" />
 
                 <TextView
                     android:id="@+id/tv_light5"
@@ -235,7 +235,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_dininngroom" />
+                    android:background="@drawable/selector_yuedudeng" />
 
                 <TextView
                     android:id="@+id/tv_light6"
@@ -273,7 +273,7 @@
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_bedroom" />
+                    android:background="@drawable/selector_changtiaodeng" />
 
                 <TextView
                     android:id="@+id/tv_light7"
