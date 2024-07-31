@@ -35,7 +35,7 @@
                     android:id="@+id/iv_inducooker"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_aircon"
+                    android:background="@drawable/selector_microoven"
                     />
             </LinearLayout>
             <LinearLayout
@@ -54,7 +54,7 @@
                     android:id="@+id/iv_icebox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_aircon"
+                    android:background="@drawable/selector_icebox"
                     />
             </LinearLayout>
 
@@ -83,7 +83,7 @@
                     android:id="@+id/iv_hotcup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_aircon"
+                    android:background="@drawable/selector_youyanzao"
                     />
             </LinearLayout>
             <LinearLayout
@@ -102,7 +102,7 @@
                     android:id="@+id/iv_Rangehood"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/selector_aircon"
+                    android:background="@drawable/selector_lenrebei"
                     />
             </LinearLayout>
 
