@@ -10,7 +10,7 @@ import com.example.home_car.R;
 public class
 WaterView extends View {
     private Paint paint;
-    private int batteryLevel = 100; // 默认电池电量为100%
+    private int batteryLevel = 50; // 默认电池电量为100%
 
     public WaterView(Context context, AttributeSet attrs) {
         super(context, attrs);

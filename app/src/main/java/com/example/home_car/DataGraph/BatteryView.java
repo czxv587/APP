@@ -11,7 +11,7 @@ import com.example.home_car.R;
 
 public class BatteryView extends View {
     private Paint paint;
-    private int batteryLevel = 100; // 默认电池电量为100%
+    private int batteryLevel = 50; // 默认电池电量为100%
     private float cornerRadius = 20.0f;// 圆角半径
 
     public BatteryView(Context context, AttributeSet attrs) {

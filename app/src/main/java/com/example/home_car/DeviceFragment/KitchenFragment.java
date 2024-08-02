@@ -11,9 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.home_car.DataSender.HardwareController;
 import com.example.home_car.R;
 
 public class KitchenFragment extends Fragment {
@@ -32,7 +30,7 @@ public class KitchenFragment extends Fragment {
     private boolean isRangehoodOn;
 
     private SharedPreferences sharedPreferences;
-    private static final String PREFS_NAME = "Kitchen";
+    private static final String PREFS_NAME = "HOME_CAR_DATA";
     private static final String INDUCOOKER_KEY = "inducooker_status";
     private static final String ICEBOX_KEY = "icebox_status";
     private static final String HOTCUP_KEY = "hotcup_status";
@@ -96,7 +94,7 @@ public class KitchenFragment extends Fragment {
                 isInducookerOn = !isInducookerOn;
                 updateInducookerStatus();
                 savePreferences();
-                HardwareController.sendPowerUpdate(isInducookerOn);
+
             }
         });
         LL_icebox.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +103,7 @@ public class KitchenFragment extends Fragment {
                 isIceboxOn = !isIceboxOn;
                 updateIceboxStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isIceboxOn);
+
             }
         });
         LL_hotcup.setOnClickListener(new View.OnClickListener() {
@@ -114,7 +112,7 @@ public class KitchenFragment extends Fragment {
                 isHotcupOn = !isHotcupOn;
                 updateHotcupStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isHotcupOn);
+
             }
         });
         LL_Rangehood.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +121,7 @@ public class KitchenFragment extends Fragment {
                 isRangehoodOn = !isRangehoodOn;
                 updateRangehoodStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isRangehoodOn);
+
             }
         });
 

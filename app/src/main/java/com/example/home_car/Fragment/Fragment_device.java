@@ -14,7 +14,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.home_car.DataSender.HardwareData;
 import com.example.home_car.R;
 import com.example.home_car.RoomPagerAdapter;
 import com.google.android.material.tabs.TabLayout;
@@ -38,7 +37,7 @@ public class Fragment_device extends Fragment {
     private final int MIN_TEMPERATURE = 16;
     private final int MAX_TEMPERATURE = 30;
     private SharedPreferences sharedPreferences;
-    private static final String PREFS_NAME = "temperature_prefs";
+    private static final String PREFS_NAME = "HOME_CAR_DATA";
     private static final String TEMPERATURE_KEY = "current_temperature";
     private static final String POWER_KEY = "power_status";
     private static final String MODE_KEY = "mode_status";
@@ -72,69 +71,7 @@ public class Fragment_device extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_2, container, false);
-//        temperatureTextView=view.findViewById(R.id.tv_temp);
-//        Tv_model=view.findViewById(R.id.tv_model);
-//        increaseButton=view.findViewById(R.id.increaseBnt);
-//        decreaseButton=view.findViewById(R.id.decreaseBnt);
-//        airswitch=view.findViewById(R.id.airBnt);
-//        modelswitch=view.findViewById(R.id.modelBnt);
-//        Iv_aircon=view.findViewById(R.id.iv_aircon);
-//        Iv_switch=view.findViewById(R.id.iv_switch);
-//        Iv_model=view.findViewById(R.id.iv_model);
 //
-//        sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-//        temperature = sharedPreferences.getInt(TEMPERATURE_KEY, MIN_TEMPERATURE);
-//        isPowerOn = sharedPreferences.getBoolean(POWER_KEY, true);
-//        isCoolMode = sharedPreferences.getBoolean(MODE_KEY, false);
-//        updateTemperatureDisplay();
-//        updatePowerStatus();
-//        updateModeStatus();
-//        fetchAndUpdateHardwareData();
-//
-//        increaseButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (temperature < MAX_TEMPERATURE) {
-//                    temperature++;
-//                    updateTemperatureDisplay();
-//                    savePreferences();
-//                    HardwareController.sendTemperatureUpdate(temperature);
-//                }
-//            }
-//        });
-//
-//        decreaseButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (temperature > MIN_TEMPERATURE) {
-//                    temperature--;
-//                    updateTemperatureDisplay();
-//                    savePreferences();
-//                    HardwareController.sendTemperatureUpdate(temperature);
-//                }
-//            }
-//        });
-//
-//        airswitch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                isPowerOn = !isPowerOn;
-//                updatePowerStatus();
-//                savePreferences();
-//                HardwareController.sendPowerUpdate(isPowerOn);
-//            }
-//        });
-//        modelswitch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                isCoolMode = !isCoolMode;
-//                updateModeStatus();
-//                savePreferences();
-//                HardwareController.sendModeUpdate(isCoolMode);
-//            }
-//        });
-
-
         ViewPager2 viewPager = view.findViewById(R.id.viewPager);
         TabLayout tabLayout = view.findViewById(R.id.tabLayout);
 
@@ -161,19 +98,7 @@ public class Fragment_device extends Fragment {
         return view;
     }
 
-    private void fetchAndUpdateHardwareData() {
-        HardwareData hardwareData = HardwareData.fetchHardwareData();
 
-        // 更新UI
-        temperatureTextView.setText(String.valueOf(hardwareData.getTemperature()));
-        if (hardwareData.isSwitchState()) {
-            Iv_switch.setSelected(true);
-            Iv_aircon.setSelected(true);
-        } else {
-            Iv_switch.setSelected(false);
-            Iv_aircon.setSelected(false);
-        }
-    }
 
     private void savePreferences() {
         SharedPreferences.Editor editor = sharedPreferences.edit();

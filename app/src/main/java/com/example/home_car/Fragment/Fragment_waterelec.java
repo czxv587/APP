@@ -12,10 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
-import com.example.home_car.DataSender.HardwareController;
 import com.example.home_car.R;
 
 
@@ -31,6 +28,7 @@ public class Fragment_waterelec extends Fragment {
     private boolean iswaterPumpOn;
     private boolean isInverterOn;
     private SharedPreferences sharedPreferences;
+    private static final String PREFS_NAME = "HOME_CAR_DATA";
     private static final String WATERPUMP_KEY = "waterPump_status";
     private static final String INVERTER_KEY = "inverter_status";
 
@@ -65,7 +63,7 @@ public class Fragment_waterelec extends Fragment {
         Iv_waterPump = view.findViewById(R.id.iv_waterPump);
         Iv_inverter = view.findViewById(R.id.iv_inverter);
 
-        sharedPreferences = getActivity().getSharedPreferences(WATERPUMP_KEY, Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         iswaterPumpOn = sharedPreferences.getBoolean(WATERPUMP_KEY, false);
         isInverterOn = sharedPreferences.getBoolean(INVERTER_KEY,false);
         updateWaterPumpStatus();
@@ -77,7 +75,7 @@ public class Fragment_waterelec extends Fragment {
                 iswaterPumpOn =!iswaterPumpOn;
                 updateWaterPumpStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(iswaterPumpOn);
+
             }
         });
 
@@ -87,7 +85,7 @@ public class Fragment_waterelec extends Fragment {
                 isInverterOn =!isInverterOn;
                 updateInverterStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isInverterOn);
+
             }
         });
 

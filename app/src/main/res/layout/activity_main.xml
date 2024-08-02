@@ -12,90 +12,94 @@
     <!--左部导航-->
 
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="60dp"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
         android:background="@color/white"
-        >
+        android:orientation="vertical">
+
         <LinearLayout
             android:id="@+id/ll_Light"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iv_Light"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/selector_bg_light"/>
+                android:background="@drawable/selector_bg_light" />
+
             <TextView
                 android:id="@+id/tv_Light"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="照明"
-                />
+                android:text="照明" />
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/ll_ElecSystem"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
-            android:layout_weight="1">
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iv_ElecSystem"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/selector_bg_device"/>
+                android:background="@drawable/selector_bg_device" />
+
             <TextView
                 android:id="@+id/tv_ElecSystem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="电器"
-                />
+                android:text="电器" />
 
         </LinearLayout>
+
         <LinearLayout
-            android:gravity="center"
             android:id="@+id/ll_ElecEquipment"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iv_ElecEquipment"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/selector_bg_elec"
-                />
+                android:background="@drawable/selector_bg_elec" />
+
             <TextView
                 android:id="@+id/tv_ElecEquipment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="水电"
-                />
+                android:text="水电" />
         </LinearLayout>
+
         <LinearLayout
-            android:gravity="center"
             android:id="@+id/ll_Other"
-            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
             <ImageView
                 android:id="@+id/iv_Other"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
-                android:background="@drawable/selector_bg_safety"
-                />
+                android:background="@drawable/selector_bg_safety" />
+
             <TextView
                 android:id="@+id/tv_Other"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="安全"
-                />
+                android:text="安全" />
         </LinearLayout>
     </LinearLayout>
 
@@ -179,7 +183,9 @@
                         android:id="@+id/sendButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="发送随机数"
+                        android:layout_weight="1"
+                        android:text="发送"
+                        android:backgroundTint="@color/black2"
                         android:layout_centerInParent="true"/>
 
                 </LinearLayout>
@@ -221,7 +227,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_weight="1"
-
+            android:background="@color/black1"
             >
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -229,13 +235,21 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="vertical"
+                android:gravity="center"
                 android:padding="16dp">
 
                 <com.example.home_car.DataGraph.BatteryView
                     android:id="@+id/batteryView1"
-                    android:layout_width="20dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="40dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
                     android:background="@color/white"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="污水水位"
+                    />
             </LinearLayout>
 
             <LinearLayout
@@ -243,14 +257,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:gravity="center"
                 android:layout_weight="1"
                 android:padding="16dp">
 
                 <com.example.home_car.DataGraph.BatteryView
                     android:id="@+id/batteryView2"
                     android:layout_width="40dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
                     android:background="@color/white"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="污水水位"
+                    />
             </LinearLayout>
 
         </LinearLayout>

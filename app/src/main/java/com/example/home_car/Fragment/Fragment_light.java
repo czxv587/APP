@@ -33,7 +33,7 @@ public class Fragment_light extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    private static final String SHARED_PREFS = "LightPreferences";
+    private static final String PREFS_NAME = "HOME_CAR_DATA";
     private static final String LIGHT_STATUS1 = "light_status1";
     private static final String LIGHT_STATUS2 = "light_status2";
     private static final String LIGHT_STATUS3 = "light_status3";
@@ -75,7 +75,7 @@ public class Fragment_light extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_1, container, false);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         // 获取灯光开关控件
         Tv_light1=view.findViewById(R.id.tv_light1);
@@ -120,16 +120,16 @@ public class Fragment_light extends Fragment {
         updateLightLinearLayout(LL_light2,lightStatus2);
         updateLightLinearLayout(LL_light3,lightStatus3);
         updateLightLinearLayout(LL_light4,lightStatus4);
-        updateLightLinearLayout(LL_light2,lightStatus5);
-        updateLightLinearLayout(LL_light3,lightStatus6);
-        updateLightLinearLayout(LL_light4,lightStatus7);
+        updateLightLinearLayout(LL_light5,lightStatus5);
+        updateLightLinearLayout(LL_light6,lightStatus6);
+        updateLightLinearLayout(LL_light7,lightStatus7);
         updateLightTextview(Tv_light1,lightStatus1);
         updateLightTextview(Tv_light2,lightStatus2);
         updateLightTextview(Tv_light3,lightStatus3);
         updateLightTextview(Tv_light4,lightStatus4);
-        updateLightTextview(Tv_light2,lightStatus5);
-        updateLightTextview(Tv_light3,lightStatus6);
-        updateLightTextview(Tv_light4,lightStatus7);
+        updateLightTextview(Tv_light5,lightStatus5);
+        updateLightTextview(Tv_light6,lightStatus6);
+        updateLightTextview(Tv_light7,lightStatus7);
         LL_light1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

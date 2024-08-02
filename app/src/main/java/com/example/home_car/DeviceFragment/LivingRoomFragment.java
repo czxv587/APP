@@ -1,5 +1,7 @@
 package com.example.home_car.DeviceFragment;
 
+
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -13,8 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.home_car.DataSender.HardwareController;
-import com.example.home_car.DataSender.HardwareData;
+import com.example.home_car.DataSender.TcpClient;
 import com.example.home_car.R;
 
 
@@ -41,7 +42,7 @@ public class LivingRoomFragment extends Fragment {
     private final int MIN_TEMPERATURE = 16;
     private final int MAX_TEMPERATURE = 30;
     private SharedPreferences sharedPreferences;
-    private static final String PREFS_NAME = "Livingroom";
+    private static final String PREFS_NAME = "HOME_CAR_DATA";
     private static final String TEMPERATURE_KEY = "current_temperature";
     private static final String AIRPOWER_KEY = "airpower_status";
     private static final String MODE_KEY = "mode_status";
@@ -50,6 +51,7 @@ public class LivingRoomFragment extends Fragment {
     private static final String COLORGLASS_KEY = "clorglass_status";
     private static final String BASSPOWER_KEY = "basspower_status";
     private static final String POWERAMPLIFIER_KEY = "poweramplifier_status";
+    private TcpClient tcpClient;
 
     public LivingRoomFragment() {
         // Required empty public constructor
@@ -97,6 +99,7 @@ public class LivingRoomFragment extends Fragment {
         LL_socketpower=view.findViewById(R.id.ll_socketpower);
 
         sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
         temperature = sharedPreferences.getInt(TEMPERATURE_KEY, MIN_TEMPERATURE);
         isAirPowerOn = sharedPreferences.getBoolean(AIRPOWER_KEY, false);
         isCoolMode = sharedPreferences.getBoolean(MODE_KEY, true);
@@ -123,7 +126,7 @@ public class LivingRoomFragment extends Fragment {
                     temperature++;
                     updateTemperatureDisplay();
                     savePreferences();
-                    HardwareController.sendTemperatureUpdate(temperature);
+
                 }
             }
         });
@@ -135,7 +138,7 @@ public class LivingRoomFragment extends Fragment {
                     temperature--;
                     updateTemperatureDisplay();
                     savePreferences();
-                    HardwareController.sendTemperatureUpdate(temperature);
+
                 }
             }
         });
@@ -146,7 +149,13 @@ public class LivingRoomFragment extends Fragment {
                 isAirPowerOn = !isAirPowerOn;
                 updateAirPowerStatus();
                 savePreferences();
-                HardwareController.sendPowerUpdate(isAirPowerOn);
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        tcpClient.sendTcpData();
+//
+//                    }
+//                }).start();
             }
         });
         modelswitch.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +164,7 @@ public class LivingRoomFragment extends Fragment {
                 isCoolMode = !isCoolMode;
                 updateAirModeStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isCoolMode);
+
             }
         });
         LL_socketpower.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +173,7 @@ public class LivingRoomFragment extends Fragment {
                 isSocketPowerOn = !isSocketPowerOn;
                 updateSocketPowerStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isSocketPowerOn);
+
             }
         });
         Iv_usbpower.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +182,7 @@ public class LivingRoomFragment extends Fragment {
                 isUsbPowerOn = !isUsbPowerOn;
                 updateUsbPowerStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isUsbPowerOn);
+
             }
         });
         Iv_colorglass.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +191,7 @@ public class LivingRoomFragment extends Fragment {
                 isColorGlassOn = !isColorGlassOn;
                 updateColorGlassStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isColorGlassOn);
+
             }
         });
         Iv_basspower.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +200,7 @@ public class LivingRoomFragment extends Fragment {
                 isBassPowerOn = !isBassPowerOn;
                 updateBassPowerStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isBassPowerOn);
+
             }
         });
         Iv_poweramplifier.setOnClickListener(new View.OnClickListener() {
@@ -200,7 +209,7 @@ public class LivingRoomFragment extends Fragment {
                 isPowerAmplifierOn = !isPowerAmplifierOn;
                 updatePowerAmplifierStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isPowerAmplifierOn);
+
             }
         });
         return view;

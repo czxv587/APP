@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.example.home_car.DataSender.HardwareController;
+import com.example.home_car.DataSender.TcpClient;
 import com.example.home_car.R;
 
 
@@ -31,8 +31,10 @@ public class BathroomFragment extends Fragment {
     private boolean isClosetoolOn;
     private boolean isExtractorfanOn;
 
+    private TcpClient tcpClient;
+
     private SharedPreferences sharedPreferences;
-    private static final String PREFS_NAME = "bathroom";
+    private static final String PREFS_NAME = "HOME_CAR_DATA";
     private static final String HOTWIND_KEY = "hotwind_status";
     private static final String CLOSETOOL_KEY = "closetool_status";
     private static final String EXTRACTORFAN_KEY = "extractorfan_status";
@@ -81,6 +83,8 @@ public class BathroomFragment extends Fragment {
         isExtractorfanOn = sharedPreferences.getBoolean(EXTRACTORFAN_KEY, false);
         isHotwindOn = sharedPreferences.getBoolean(HOTWIND_KEY, false);
 
+        tcpClient=new TcpClient(getContext());
+
         updateHotwindStatus();
         updateClosetoolStatus();
         updateExtractorfanStatus();
@@ -94,7 +98,7 @@ public class BathroomFragment extends Fragment {
                 isHotwindOn = !isHotwindOn;
                 updateHotwindStatus();
                 savePreferences();
-                HardwareController.sendPowerUpdate(isHotwindOn);
+
             }
         });
         LL_closetool.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +107,7 @@ public class BathroomFragment extends Fragment {
                 isClosetoolOn = !isClosetoolOn;
                 updateClosetoolStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isClosetoolOn);
+
             }
         });
         LL_extractorfan.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +116,13 @@ public class BathroomFragment extends Fragment {
                 isExtractorfanOn = !isExtractorfanOn;
                 updateExtractorfanStatus();
                 savePreferences();
-                HardwareController.sendModeUpdate(isExtractorfanOn);
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+                    }
+                }).start();
             }
         });
 
