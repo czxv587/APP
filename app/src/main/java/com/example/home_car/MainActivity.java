@@ -3,7 +3,6 @@ package com.example.home_car;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,26 +13,28 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.home_car.DataGraph.BatteryView;
 import com.example.home_car.DataSender.TcpClient;
-import com.example.home_car.DataSender.TcpServer;
 import com.example.home_car.Fragment.Fragment_device;
 import com.example.home_car.Fragment.Fragment_waterelec;
 import com.example.home_car.Fragment.Fragment_light;
 import com.example.home_car.Fragment.Fragment_safety;
 
+import java.io.BufferedReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private LinearLayout LL_light,LL_elecequipment,LL_elecsystem,LL_other;
     private ImageView Iv_light,Iv_elecequipment,Iv_elecsystem,Iv_other;
-    private TextView Tv_light,Tv_elecequipment,Tv_elecsystem,Tv_other;
+    private TextView Tv_light,Tv_elecequipment,Tv_elecsystem,Tv_other,Tv_testNum;
     private BatteryView batteryView;
-    private Button sendButton,updateButton;
+
     FragmentManager fragmentManager;
     private TcpClient tcpClient;
-    private TcpServer tcpServer;
 
+    private BufferedReader input;
+    private PrintWriter output;
     private Socket socket;
     private OutputStream outputStream;
 
@@ -41,39 +42,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
+        Tv_testNum=findViewById(R.id.testNum);
 
         //设置电池电量为50%
         batteryView = findViewById(R.id.batteryView1);
         batteryView.setBatteryLevel(50);
 
 
-//        tcpServer=new TcpServer(this);
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                tcpServer.recieveTcpData();
-//
-//            }
-//        }).start();
-//
-        // 获取按钮并设置发送信息点击事件监听器
         tcpClient = new TcpClient(this);
 
-        sendButton = findViewById(R.id.sendButton);
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tcpClient.sendTcpData();
-
-                    }
-                }).start();
-            }
-        });
 
        //初始化Fragment
         initView();

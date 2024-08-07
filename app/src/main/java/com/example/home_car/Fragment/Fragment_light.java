@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.example.home_car.DataSender.TcpClient;
 import com.example.home_car.R;
 import com.kyleduo.switchbutton.SwitchButton;
 
@@ -41,9 +42,12 @@ public class Fragment_light extends Fragment {
     private static final String LIGHT_STATUS5 = "light_status5";
     private static final String LIGHT_STATUS6 = "light_status6";
     private static final String LIGHT_STATUS7 = "light_status7";
+    private boolean islight1On,islight2On,islight3On,islight4On,islight5On,islight6On,islight7On;
     private LinearLayout LL_light1, LL_light2, LL_light3, LL_light4,LL_light5, LL_light6, LL_light7;
     private ImageView Iv_light1, Iv_light2, Iv_light3, Iv_light4, Iv_light5, Iv_light6, Iv_light7;
     private TextView Tv_light1, Tv_light2, Tv_light3, Tv_light4, Tv_light5, Tv_light6, Tv_light7;
+    private TcpClient tcpClient;
+    private SharedPreferences sharedPreferences;
 
     FragmentManager fragmentManager;
 
@@ -75,7 +79,9 @@ public class Fragment_light extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_1, container, false);
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
+        tcpClient=new TcpClient(getContext());
 
         // 获取灯光开关控件
         Tv_light1=view.findViewById(R.id.tv_light1);
@@ -101,127 +107,168 @@ public class Fragment_light extends Fragment {
         Iv_light7 = view.findViewById(R.id.iv_light7);
 
         // 从SharedPreferences中恢复灯光开关状态
-        boolean lightStatus1 = sharedPreferences.getBoolean(LIGHT_STATUS1, false);
-        boolean lightStatus2 = sharedPreferences.getBoolean(LIGHT_STATUS2, false);
-        boolean lightStatus3 = sharedPreferences.getBoolean(LIGHT_STATUS3, false);
-        boolean lightStatus4 = sharedPreferences.getBoolean(LIGHT_STATUS4, false);
-        boolean lightStatus5 = sharedPreferences.getBoolean(LIGHT_STATUS5, false);
-        boolean lightStatus6 = sharedPreferences.getBoolean(LIGHT_STATUS6, false);
-        boolean lightStatus7 = sharedPreferences.getBoolean(LIGHT_STATUS7, false);
+        islight1On = sharedPreferences.getBoolean(LIGHT_STATUS1, false);
+        islight2On = sharedPreferences.getBoolean(LIGHT_STATUS2, false);
+        islight3On = sharedPreferences.getBoolean(LIGHT_STATUS3, false);
+        islight4On = sharedPreferences.getBoolean(LIGHT_STATUS4, false);
+        islight5On = sharedPreferences.getBoolean(LIGHT_STATUS5, false);
+        islight6On = sharedPreferences.getBoolean(LIGHT_STATUS6, false);
+        islight7On = sharedPreferences.getBoolean(LIGHT_STATUS7, false);
 
-        updateLightImagview(Iv_light1,lightStatus1);
-        updateLightImagview(Iv_light2,lightStatus2);
-        updateLightImagview(Iv_light3,lightStatus3);
-        updateLightImagview(Iv_light4,lightStatus4);
-        updateLightImagview(Iv_light5,lightStatus5);
-        updateLightImagview(Iv_light6,lightStatus6);
-        updateLightImagview(Iv_light7,lightStatus7);
-        updateLightLinearLayout(LL_light1,lightStatus1);
-        updateLightLinearLayout(LL_light2,lightStatus2);
-        updateLightLinearLayout(LL_light3,lightStatus3);
-        updateLightLinearLayout(LL_light4,lightStatus4);
-        updateLightLinearLayout(LL_light5,lightStatus5);
-        updateLightLinearLayout(LL_light6,lightStatus6);
-        updateLightLinearLayout(LL_light7,lightStatus7);
-        updateLightTextview(Tv_light1,lightStatus1);
-        updateLightTextview(Tv_light2,lightStatus2);
-        updateLightTextview(Tv_light3,lightStatus3);
-        updateLightTextview(Tv_light4,lightStatus4);
-        updateLightTextview(Tv_light5,lightStatus5);
-        updateLightTextview(Tv_light6,lightStatus6);
-        updateLightTextview(Tv_light7,lightStatus7);
+        updateLightImagview(Iv_light1,islight1On);
+        updateLightImagview(Iv_light2,islight2On);
+        updateLightImagview(Iv_light3,islight3On);
+        updateLightImagview(Iv_light4,islight4On);
+        updateLightImagview(Iv_light5,islight5On);
+        updateLightImagview(Iv_light6,islight6On);
+        updateLightImagview(Iv_light7,islight7On);
+        updateLightLinearLayout(LL_light1,islight1On);
+        updateLightLinearLayout(LL_light2,islight2On);
+        updateLightLinearLayout(LL_light3,islight3On);
+        updateLightLinearLayout(LL_light4,islight4On);
+        updateLightLinearLayout(LL_light5,islight5On);
+        updateLightLinearLayout(LL_light6,islight6On);
+        updateLightLinearLayout(LL_light7,islight7On);
+        updateLightTextview(Tv_light1,islight1On);
+        updateLightTextview(Tv_light2,islight2On);
+        updateLightTextview(Tv_light3,islight3On);
+        updateLightTextview(Tv_light4,islight4On);
+        updateLightTextview(Tv_light5,islight5On);
+        updateLightTextview(Tv_light6,islight6On);
+        updateLightTextview(Tv_light7,islight7On);
         LL_light1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS1, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(LIGHT_STATUS1, currentStatus);
-                editor.apply();
-                updateLightImagview( Iv_light1,currentStatus);
-                updateLightLinearLayout(LL_light1,currentStatus);
-                updateLightTextview(Tv_light1,currentStatus);
+                islight1On=!islight1On;
+                updateLightImagview(Iv_light1,islight1On);
+                updateLightTextview(Tv_light1,islight1On);
+                updateLightLinearLayout(LL_light1,islight1On);
+                savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+
+                    }
+                }).start();
             }
         });
 
         LL_light2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS2, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(LIGHT_STATUS2, currentStatus);
-                editor.apply();
-                updateLightImagview(Iv_light2,currentStatus);
-                updateLightLinearLayout(LL_light2,currentStatus);
-                updateLightTextview(Tv_light2,currentStatus);
+                islight2On=!islight2On;
+                updateLightImagview(Iv_light2,islight2On);
+                updateLightTextview(Tv_light2,islight2On);
+                updateLightLinearLayout(LL_light2,islight2On);
+                savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+
+                    }
+                }).start();
             }
         });
 
         LL_light3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS3, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(LIGHT_STATUS3, currentStatus);
-                editor.apply();
-                updateLightImagview(Iv_light3,currentStatus);
-                updateLightLinearLayout(LL_light3,currentStatus);
-                updateLightTextview(Tv_light3,currentStatus);
+                islight3On=!islight3On;
+                updateLightImagview(Iv_light3,islight3On);
+                updateLightTextview(Tv_light3,islight3On);
+                updateLightLinearLayout(LL_light3,islight3On);
+                savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+
+                    }
+                }).start();
             }
         });
 
         LL_light4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS4, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(LIGHT_STATUS4, currentStatus);
-                editor.apply();
-                updateLightImagview(Iv_light4,currentStatus);
-                updateLightLinearLayout(LL_light4,currentStatus);
-                updateLightTextview(Tv_light4,currentStatus);
+                islight4On=!islight4On;
+                updateLightImagview(Iv_light4,islight4On);
+                updateLightTextview(Tv_light4,islight4On);
+                updateLightLinearLayout(LL_light4,islight4On);
+                savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+
+                    }
+                }).start();
             }
         });
         LL_light5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS5, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(LIGHT_STATUS5, currentStatus);
-                editor.apply();
-                updateLightImagview(Iv_light5,currentStatus);
-                updateLightLinearLayout(LL_light5,currentStatus);
-                updateLightTextview(Tv_light5,currentStatus);
+                islight5On=!islight5On;
+                updateLightImagview(Iv_light5,islight5On);
+                updateLightTextview(Tv_light5,islight5On);
+                updateLightLinearLayout(LL_light5,islight5On);
+                savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+
+                    }
+                }).start();
             }
         });
         LL_light6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS6, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(LIGHT_STATUS6, currentStatus);
-                editor.apply();
-                updateLightImagview(Iv_light6,currentStatus);
-                updateLightLinearLayout(LL_light6,currentStatus);
-                updateLightTextview(Tv_light6,currentStatus);
+                islight6On=!islight6On;
+                updateLightImagview(Iv_light6,islight6On);
+                updateLightTextview(Tv_light6,islight6On);
+                updateLightLinearLayout(LL_light6,islight6On);
+                savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+
+                    }
+                }).start();
             }
         });
         LL_light7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean currentStatus = !sharedPreferences.getBoolean(LIGHT_STATUS7, false);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putBoolean(LIGHT_STATUS7, currentStatus);
-                editor.apply();
-                updateLightImagview(Iv_light7,currentStatus);
-                updateLightLinearLayout(LL_light7,currentStatus);
-                updateLightTextview(Tv_light7,currentStatus);
+                islight7On=!islight7On;
+                updateLightImagview(Iv_light7,islight7On);
+                updateLightTextview(Tv_light7,islight7On);
+                updateLightLinearLayout(LL_light7,islight7On);
+                savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+
+                    }
+                }).start();
             }
         });
 
         return view;
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (tcpClient != null) {
+            tcpClient.closeConnection();  // 假设 TcpClient 有一个关闭连接的方法
+        }
+    }
 
     private void updateLightImagview(ImageView imageView,  boolean isOn) {
         if (isOn) {
@@ -249,6 +296,17 @@ public class Fragment_light extends Fragment {
             textView.setTextColor(getResources().getColor(R.color.black3));
             // 假设light_off是关灯时的图标
         }
+    }
+    private void savePreferences() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(LIGHT_STATUS1, islight1On);
+        editor.putBoolean(LIGHT_STATUS2, islight2On);
+        editor.putBoolean(LIGHT_STATUS3, islight3On);
+        editor.putBoolean(LIGHT_STATUS4, islight4On);
+        editor.putBoolean(LIGHT_STATUS5, islight5On);
+        editor.putBoolean(LIGHT_STATUS6, islight6On);
+        editor.putBoolean(LIGHT_STATUS7, islight7On);
+        editor.apply();
     }
 
 }

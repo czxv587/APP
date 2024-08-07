@@ -12,8 +12,14 @@
         android:layout_margin="20dp"
         android:orientation="horizontal"
         android:background="@drawable/round_coner_off"
+        android:gravity="center"
         android:layout_weight="1"
         >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="360环视监控模块待加入"
+            />
 
     </LinearLayout>
 

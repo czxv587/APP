@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.example.home_car.DataSender.TcpClient;
 import com.example.home_car.R;
 
 public class KitchenFragment extends Fragment {
@@ -28,6 +29,7 @@ public class KitchenFragment extends Fragment {
     private boolean isIceboxOn;
     private boolean isHotcupOn;
     private boolean isRangehoodOn;
+    private TcpClient tcpClient;
 
     private SharedPreferences sharedPreferences;
     private static final String PREFS_NAME = "HOME_CAR_DATA";
@@ -64,6 +66,8 @@ public class KitchenFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_kitchen, container, false);
 
+        tcpClient = new TcpClient(getContext());
+
         Iv_inducooker=view.findViewById(R.id.iv_inducooker);
         Iv_hotcup=view.findViewById(R.id.iv_hotcup);
         Iv_icebox=view.findViewById(R.id.iv_icebox);
@@ -94,7 +98,13 @@ public class KitchenFragment extends Fragment {
                 isInducookerOn = !isInducookerOn;
                 updateInducookerStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         LL_icebox.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +113,13 @@ public class KitchenFragment extends Fragment {
                 isIceboxOn = !isIceboxOn;
                 updateIceboxStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         LL_hotcup.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +128,13 @@ public class KitchenFragment extends Fragment {
                 isHotcupOn = !isHotcupOn;
                 updateHotcupStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         LL_Rangehood.setOnClickListener(new View.OnClickListener() {
@@ -121,12 +143,25 @@ public class KitchenFragment extends Fragment {
                 isRangehoodOn = !isRangehoodOn;
                 updateRangehoodStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
 
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (tcpClient != null) {
+            tcpClient.closeConnection();  // 假设 TcpClient 有一个关闭连接的方法
+        }
     }
     private void updateInducookerStatus() {
         if (isInducookerOn) {

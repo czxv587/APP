@@ -82,6 +82,8 @@ public class LivingRoomFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_living_room, container, false);
 
+        tcpClient = new TcpClient(getContext());
+
         temperatureTextView=view.findViewById(R.id.tv_temp);
         Tv_model=view.findViewById(R.id.tv_model);
         increaseButton=view.findViewById(R.id.increaseBnt);
@@ -126,7 +128,13 @@ public class LivingRoomFragment extends Fragment {
                     temperature++;
                     updateTemperatureDisplay();
                     savePreferences();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tcpClient.sendTcpData();
 
+                        }
+                    }).start();
                 }
             }
         });
@@ -138,7 +146,13 @@ public class LivingRoomFragment extends Fragment {
                     temperature--;
                     updateTemperatureDisplay();
                     savePreferences();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            tcpClient.sendTcpData();
 
+                        }
+                    }).start();
                 }
             }
         });
@@ -149,13 +163,13 @@ public class LivingRoomFragment extends Fragment {
                 isAirPowerOn = !isAirPowerOn;
                 updateAirPowerStatus();
                 savePreferences();
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        tcpClient.sendTcpData();
-//
-//                    }
-//                }).start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
+
+                    }
+                }).start();
             }
         });
         modelswitch.setOnClickListener(new View.OnClickListener() {
@@ -164,7 +178,13 @@ public class LivingRoomFragment extends Fragment {
                 isCoolMode = !isCoolMode;
                 updateAirModeStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         LL_socketpower.setOnClickListener(new View.OnClickListener() {
@@ -173,7 +193,13 @@ public class LivingRoomFragment extends Fragment {
                 isSocketPowerOn = !isSocketPowerOn;
                 updateSocketPowerStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         Iv_usbpower.setOnClickListener(new View.OnClickListener() {
@@ -182,7 +208,13 @@ public class LivingRoomFragment extends Fragment {
                 isUsbPowerOn = !isUsbPowerOn;
                 updateUsbPowerStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         Iv_colorglass.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +223,13 @@ public class LivingRoomFragment extends Fragment {
                 isColorGlassOn = !isColorGlassOn;
                 updateColorGlassStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         Iv_basspower.setOnClickListener(new View.OnClickListener() {
@@ -200,7 +238,13 @@ public class LivingRoomFragment extends Fragment {
                 isBassPowerOn = !isBassPowerOn;
                 updateBassPowerStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         Iv_poweramplifier.setOnClickListener(new View.OnClickListener() {
@@ -209,10 +253,23 @@ public class LivingRoomFragment extends Fragment {
                 isPowerAmplifierOn = !isPowerAmplifierOn;
                 updatePowerAmplifierStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (tcpClient != null) {
+            tcpClient.closeConnection();  // 假设 TcpClient 有一个关闭连接的方法
+        }
     }
 
     private void updatePowerAmplifierStatus() {

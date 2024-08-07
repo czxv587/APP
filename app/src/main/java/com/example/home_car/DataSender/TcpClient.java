@@ -15,6 +15,8 @@ public class TcpClient {
     private static final String SERVER_IP = "10.99.108.175"; // 替换为服务端IP
     private static final int SERVER_PORT = 12345; // 替换为服务端端口
     private Context context;
+    private OutputStream outputStream;
+    private Socket socket;
 
     public TcpClient(Context context) {
         this.context = context;
@@ -42,6 +44,20 @@ public class TcpClient {
         } catch (Exception e) {
             e.printStackTrace();
             Log.e("TCP", "Error: " + e.getMessage());
+        }
+    }
+    public void closeConnection() {
+        try {
+            if (outputStream != null) {
+                outputStream.close();
+            }
+            if (socket != null && !socket.isClosed()) {
+                socket.close();
+            }
+            Log.d("TCP", "Connection closed successfully.");
+        } catch (Exception e) {
+            e.printStackTrace();
+            Log.e("TCP", "Error closing connection: " + e.getMessage());
         }
     }
 }

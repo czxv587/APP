@@ -68,6 +68,8 @@ public class BathroomFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_bathroom, container, false);
 
+        tcpClient = new TcpClient(getContext());
+
         Iv_closetool=view.findViewById(R.id.iv_closetool);
         Iv_hotwind=view.findViewById(R.id.iv_hotwind);
         Iv_extractorfan=view.findViewById(R.id.iv_extractorfan);
@@ -98,7 +100,13 @@ public class BathroomFragment extends Fragment {
                 isHotwindOn = !isHotwindOn;
                 updateHotwindStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
         LL_closetool.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +136,13 @@ public class BathroomFragment extends Fragment {
 
 
         return view;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (tcpClient != null) {
+            tcpClient.closeConnection();  // 假设 TcpClient 有一个关闭连接的方法
+        }
     }
 
     private void updateHotwindStatus() {

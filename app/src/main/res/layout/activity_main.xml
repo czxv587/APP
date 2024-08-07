@@ -177,16 +177,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:gravity="center"
                     android:orientation="vertical"
                     >
-                    <Button
-                        android:id="@+id/sendButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="发送"
-                        android:backgroundTint="@color/black2"
-                        android:layout_centerInParent="true"/>
+                    <TextView
+                        android:id="@+id/testNum"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text=""/>
 
                 </LinearLayout>
                 <LinearLayout
@@ -227,7 +225,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:layout_weight="1"
-            android:background="@color/black1"
+            android:background="@color/blue1"
             >
             <LinearLayout
                 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -271,7 +269,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="污水水位"
+                    android:text="电池电量"
                     />
             </LinearLayout>
 

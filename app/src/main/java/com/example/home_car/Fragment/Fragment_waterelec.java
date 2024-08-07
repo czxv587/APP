@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.example.home_car.DataSender.TcpClient;
 import com.example.home_car.R;
 
 
@@ -31,6 +32,7 @@ public class Fragment_waterelec extends Fragment {
     private static final String PREFS_NAME = "HOME_CAR_DATA";
     private static final String WATERPUMP_KEY = "waterPump_status";
     private static final String INVERTER_KEY = "inverter_status";
+    private TcpClient tcpClient;
 
     public Fragment_waterelec() {
         // Required empty public constructor
@@ -60,6 +62,8 @@ public class Fragment_waterelec extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_3, container, false);
 
+        tcpClient=new TcpClient(getContext());
+
         Iv_waterPump = view.findViewById(R.id.iv_waterPump);
         Iv_inverter = view.findViewById(R.id.iv_inverter);
 
@@ -75,7 +79,13 @@ public class Fragment_waterelec extends Fragment {
                 iswaterPumpOn =!iswaterPumpOn;
                 updateWaterPumpStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
 
@@ -85,7 +95,13 @@ public class Fragment_waterelec extends Fragment {
                 isInverterOn =!isInverterOn;
                 updateInverterStatus();
                 savePreferences();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tcpClient.sendTcpData();
 
+                    }
+                }).start();
             }
         });
 
@@ -93,7 +109,13 @@ public class Fragment_waterelec extends Fragment {
         return view;
         // Inflate the layout for this fragment
     }
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (tcpClient != null) {
+            tcpClient.closeConnection();  // 假设 TcpClient 有一个关闭连接的方法
+        }
+    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
