@@ -20,7 +20,7 @@
     <!-- 设置圆角矩形
          radius:圆角弧度，核心代码
     -->
-    <corners android:radius="40dp" />
+    <corners android:radius="10dp" />
 
     <!-- 设置描边效果
          width:描边宽度

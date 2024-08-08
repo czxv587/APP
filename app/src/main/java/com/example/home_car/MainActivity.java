@@ -42,11 +42,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Tv_testNum=findViewById(R.id.testNum);
+
 
         //设置电池电量为50%
-        batteryView = findViewById(R.id.batteryView1);
-        batteryView.setBatteryLevel(50);
 
 
         tcpClient = new TcpClient(this);

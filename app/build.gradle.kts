@@ -31,6 +31,7 @@ android {
 dependencies {
 
     implementation ("com.kyleduo.switchbutton:library:2.1.0")
+    implementation ("com.google.android.material:material:1.4.0")
     implementation("com.github.angads25:toggle:1.1.0")
     implementation(libs.appcompat)
     implementation(libs.material)
