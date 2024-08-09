@@ -29,8 +29,9 @@ public class LivingRoomFragment extends Fragment {
     private String mParam2;
 
     private TextView temperatureTextView,Tv_model;
-    private LinearLayout increaseButton,decreaseButton,modelswitch,LL_socketpower;
-    private ImageView Iv_aircon,Iv_airswitch,Iv_model,Iv_socketpower,Iv_usbpower,Iv_colorglass,Iv_basspower,Iv_poweramplifier;
+    private LinearLayout LL_socketpower,LL_usbpower,LL_colorglass,LL_basspower,LL_poweramplifier;
+    private ImageView Iv_aircon,Iv_model,Iv_socketpower,Iv_usbpower,Iv_colorglass,Iv_basspower,Iv_poweramplifier;
+    private ImageView Iv_airSwitch,IV_socketpowerSwitch,Iv_usbpowerSwitch,Iv_colorglassSwitch,Iv_basspowerSwitch,Iv_poweramplifierSwitch;
     private int temperature;
     private boolean isAirPowerOn;
     private boolean isCoolMode;
@@ -91,14 +92,26 @@ public class LivingRoomFragment extends Fragment {
 //        airswitch=view.findViewById(R.id.airBnt);
 //        modelswitch=view.findViewById(R.id.modelBnt);
         Iv_aircon=view.findViewById(R.id.iv_aircon);
-        Iv_airswitch=view.findViewById(R.id.iv_switch);
 //        Iv_model=view.findViewById(R.id.iv_model);
         Iv_socketpower=view.findViewById(R.id.iv_socketpower);
         Iv_usbpower=view.findViewById(R.id.iv_usbpower);
         Iv_colorglass=view.findViewById(R.id.iv_colerglass);
         Iv_basspower=view.findViewById(R.id.iv_basspower);
         Iv_poweramplifier=view.findViewById(R.id.iv_poweramplifier);
+
+        Iv_airSwitch=view.findViewById(R.id.btn_aircon);
+        IV_socketpowerSwitch=view.findViewById(R.id.btn_socketpower);
+        Iv_usbpowerSwitch=view.findViewById(R.id.btn_usbpower);
+        Iv_colorglassSwitch=view.findViewById(R.id.btn_colorglass);
+        Iv_basspowerSwitch=view.findViewById(R.id.btn_basspower);
+        Iv_poweramplifierSwitch=view.findViewById(R.id.btn_poweramplifier);
+
         LL_socketpower=view.findViewById(R.id.ll_socketpower);
+        LL_usbpower=view.findViewById(R.id.ll_usbpower);
+        LL_colorglass=view.findViewById(R.id.ll_colerglass);
+        LL_basspower=view.findViewById(R.id.ll_basspower);
+        LL_poweramplifier=view.findViewById(R.id.ll_poweramplifier);
+
 
         sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
@@ -157,7 +170,7 @@ public class LivingRoomFragment extends Fragment {
 //            }
 //        });
 
-        Iv_airswitch.setOnClickListener(new View.OnClickListener() {
+        Iv_aircon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isAirPowerOn = !isAirPowerOn;
@@ -202,7 +215,7 @@ public class LivingRoomFragment extends Fragment {
                 }).start();
             }
         });
-        Iv_usbpower.setOnClickListener(new View.OnClickListener() {
+        LL_usbpower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isUsbPowerOn = !isUsbPowerOn;
@@ -217,7 +230,7 @@ public class LivingRoomFragment extends Fragment {
                 }).start();
             }
         });
-        Iv_colorglass.setOnClickListener(new View.OnClickListener() {
+        LL_colorglass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isColorGlassOn = !isColorGlassOn;
@@ -232,7 +245,7 @@ public class LivingRoomFragment extends Fragment {
                 }).start();
             }
         });
-        Iv_basspower.setOnClickListener(new View.OnClickListener() {
+        LL_basspower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isBassPowerOn = !isBassPowerOn;
@@ -247,7 +260,7 @@ public class LivingRoomFragment extends Fragment {
                 }).start();
             }
         });
-        Iv_poweramplifier.setOnClickListener(new View.OnClickListener() {
+        LL_poweramplifier.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isPowerAmplifierOn = !isPowerAmplifierOn;
@@ -275,16 +288,20 @@ public class LivingRoomFragment extends Fragment {
     private void updatePowerAmplifierStatus() {
         if (isPowerAmplifierOn) {
             Iv_poweramplifier.setSelected(true);
+            Iv_poweramplifierSwitch.setSelected(true);
         } else {
             Iv_poweramplifier.setSelected(false);
+            Iv_poweramplifierSwitch.setSelected(false);
         }
     }
 
     private void updateBassPowerStatus() {
         if (isBassPowerOn) {
             Iv_basspower.setSelected(true);
+            Iv_basspowerSwitch.setSelected(true);
         } else {
             Iv_basspower.setSelected(false);
+            Iv_basspowerSwitch.setSelected(false);
         }
     }
 
@@ -292,24 +309,30 @@ public class LivingRoomFragment extends Fragment {
     private void updateColorGlassStatus() {
         if (isColorGlassOn) {
             Iv_colorglass.setSelected(true);
+            Iv_colorglassSwitch.setSelected(true);
         } else {
             Iv_colorglass.setSelected(false);
+            Iv_colorglassSwitch.setSelected(false);
         }
     }
 
     private void updateUsbPowerStatus() {
         if (isUsbPowerOn) {
             Iv_usbpower.setSelected(true);
+            Iv_usbpowerSwitch.setSelected(true);
         } else {
             Iv_usbpower.setSelected(false);
+            Iv_usbpowerSwitch.setSelected(false);
         }
     }
 
     private void updateSocketPowerStatus() {
         if (isSocketPowerOn) {
             Iv_socketpower.setSelected(true);
+            IV_socketpowerSwitch.setSelected(true);
         } else {
             Iv_socketpower.setSelected(false);
+            IV_socketpowerSwitch.setSelected(false);
         }
     }
 
@@ -340,11 +363,11 @@ public class LivingRoomFragment extends Fragment {
 
     private void updateAirPowerStatus() {
         if (isAirPowerOn) {
-            Iv_airswitch.setSelected(true);
             Iv_aircon.setSelected(true);
+            Iv_airSwitch.setSelected(true);
         } else {
-            Iv_airswitch.setSelected(false);
             Iv_aircon.setSelected(false);
+            Iv_airSwitch.setSelected(false);
         }
     }
 

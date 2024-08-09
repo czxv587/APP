@@ -24,11 +24,9 @@ public class KitchenFragment extends Fragment {
     private String mParam2;
     private LinearLayout LL_inducooker,LL_icebox,LL_hotcup,LL_Rangehood;
     private ImageView Iv_inducooker,Iv_icebox,Iv_hotcup,Iv_Rangehood;
+    private ImageView Btn_inducooker,Btn_icebox,Btn_hotcup,Btn_rangehood;
+    private boolean isInducookerOn,isIceboxOn,isHotcupOn,isRangehoodOn;
 
-    private boolean isInducookerOn;
-    private boolean isIceboxOn;
-    private boolean isHotcupOn;
-    private boolean isRangehoodOn;
     private TcpClient tcpClient;
 
     private SharedPreferences sharedPreferences;
@@ -76,7 +74,10 @@ public class KitchenFragment extends Fragment {
         LL_hotcup=view.findViewById(R.id.ll_hotcup);
         LL_icebox=view.findViewById(R.id.ll_icebox);
         LL_Rangehood=view.findViewById(R.id.ll_Rangehood);
-
+        Btn_inducooker=view.findViewById(R.id.btn_inducooker);
+        Btn_hotcup=view.findViewById(R.id.btn_hotcup);
+        Btn_icebox=view.findViewById(R.id.btn_icebox);
+        Btn_rangehood=view.findViewById(R.id.btn_Rangehood);
 
         sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         isIceboxOn = sharedPreferences.getBoolean(ICEBOX_KEY, false);
@@ -84,11 +85,15 @@ public class KitchenFragment extends Fragment {
         isInducookerOn = sharedPreferences.getBoolean(INDUCOOKER_KEY, false);
         isRangehoodOn = sharedPreferences.getBoolean(RANGEHOOD_KEY, false);
 
-        updateIceboxStatus();
-        updateHotcupStatus();
-        updateInducookerStatus();
-        updateRangehoodStatus();
 
+        updateDeviceImagview(Iv_icebox,isIceboxOn);
+        updateDeviceImagview(Iv_hotcup,isHotcupOn);
+        updateDeviceImagview(Iv_inducooker,isInducookerOn);
+        updateDeviceImagview(Iv_Rangehood,isRangehoodOn);
+        updateDeviceImagview(Btn_icebox,isIceboxOn);
+        updateDeviceImagview(Btn_hotcup,isHotcupOn);
+        updateDeviceImagview(Btn_inducooker,isInducookerOn);
+        updateDeviceImagview(Btn_rangehood,isRangehoodOn);
 //        fetchAndUpdateHardwareData();//从硬件获取数据更新UI
 
 
@@ -96,7 +101,10 @@ public class KitchenFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isInducookerOn = !isInducookerOn;
-                updateInducookerStatus();
+//                updateInducookerStatus();
+                updateDeviceImagview(Iv_inducooker,isInducookerOn);
+                updateDeviceImagview(Btn_inducooker,isInducookerOn);
+//                updateDeviceLinearLayout(LL_inducooker,isInducookerOn);
                 savePreferences();
                 new Thread(new Runnable() {
                     @Override
@@ -111,7 +119,10 @@ public class KitchenFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isIceboxOn = !isIceboxOn;
-                updateIceboxStatus();
+//                updateIceboxStatus();
+                updateDeviceImagview(Iv_icebox,isIceboxOn);
+                updateDeviceImagview(Btn_icebox,isIceboxOn);
+//                updateDeviceLinearLayout(LL_icebox,isIceboxOn);
                 savePreferences();
                 new Thread(new Runnable() {
                     @Override
@@ -126,7 +137,10 @@ public class KitchenFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isHotcupOn = !isHotcupOn;
-                updateHotcupStatus();
+//                updateHotcupStatus();
+                updateDeviceImagview(Iv_hotcup,isHotcupOn);
+                updateDeviceImagview(Btn_hotcup,isHotcupOn);
+//                updateDeviceLinearLayout(LL_hotcup,isHotcupOn);
                 savePreferences();
                 new Thread(new Runnable() {
                     @Override
@@ -141,7 +155,10 @@ public class KitchenFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 isRangehoodOn = !isRangehoodOn;
-                updateRangehoodStatus();
+//                updateRangehoodStatus();
+                updateDeviceImagview(Iv_Rangehood,isRangehoodOn);
+                updateDeviceImagview(Btn_rangehood,isRangehoodOn);
+//                updateDeviceLinearLayout(LL_Rangehood,isRangehoodOn);
                 savePreferences();
                 new Thread(new Runnable() {
                     @Override
@@ -163,38 +180,58 @@ public class KitchenFragment extends Fragment {
             tcpClient.closeConnection();  // 假设 TcpClient 有一个关闭连接的方法
         }
     }
-    private void updateInducookerStatus() {
-        if (isInducookerOn) {
-            Iv_inducooker.setSelected(true);
+//    private void updateInducookerStatus() {
+//        if (isInducookerOn) {
+//            Iv_inducooker.setSelected(true);
+//        } else {
+//            Iv_inducooker.setSelected(false);
+//        }
+//    }
+//
+//
+//    private void updateHotcupStatus() {
+//        if (isHotcupOn) {
+//            Iv_hotcup.setSelected(true);
+//        } else {
+//            Iv_hotcup.setSelected(false);
+//        }
+//    }
+//
+//    private void updateIceboxStatus() {
+//        if (isIceboxOn) {
+//            Iv_icebox.setSelected(true);
+//        } else {
+//            Iv_icebox.setSelected(false);
+//        }
+//    }
+//
+//    private void updateRangehoodStatus() {
+//        if (isRangehoodOn) {
+//            Iv_Rangehood.setSelected(true);
+//        } else {
+//            Iv_Rangehood.setSelected(false);
+//        }
+//    }
+
+    private void updateDeviceImagview(ImageView imageView,  boolean isOn) {
+        if (isOn) {
+            imageView.setSelected(true);
+            // 假设light_on是开灯时的图标
         } else {
-            Iv_inducooker.setSelected(false);
+            imageView.setSelected(false);
+            // 假设light_off是关灯时的图标
         }
     }
+//    private void updateDeviceLinearLayout(LinearLayout linearLayout,  boolean isOn) {
+//        if (isOn) {
+//            linearLayout.setSelected(true);
+//            // 假设light_on是开灯时的图标
+//        } else {
+//            linearLayout.setSelected(false);
+//            // 假设light_off是关灯时的图标
+//        }
+//    }
 
-
-    private void updateHotcupStatus() {
-        if (isHotcupOn) {
-            Iv_hotcup.setSelected(true);
-        } else {
-            Iv_hotcup.setSelected(false);
-        }
-    }
-
-    private void updateIceboxStatus() {
-        if (isIceboxOn) {
-            Iv_icebox.setSelected(true);
-        } else {
-            Iv_icebox.setSelected(false);
-        }
-    }
-
-    private void updateRangehoodStatus() {
-        if (isRangehoodOn) {
-            Iv_Rangehood.setSelected(true);
-        } else {
-            Iv_Rangehood.setSelected(false);
-        }
-    }
     private void savePreferences() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(HOTCUP_KEY, isHotcupOn);

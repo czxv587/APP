@@ -26,6 +26,7 @@ public class BathroomFragment extends Fragment {
     private String mParam2;
     private LinearLayout LL_hotwind,LL_closetool,LL_extractorfan;
     private ImageView Iv_hotwind,Iv_closetool,Iv_extractorfan;
+    private ImageView Btn_hotwind,Btn_closetool,Btn_extractorfan;
 
     private boolean isHotwindOn;
     private boolean isClosetoolOn;
@@ -74,6 +75,9 @@ public class BathroomFragment extends Fragment {
         Iv_hotwind=view.findViewById(R.id.iv_hotwind);
         Iv_extractorfan=view.findViewById(R.id.iv_extractorfan);
 
+        Btn_closetool=view.findViewById(R.id.btn_closetool);
+        Btn_hotwind=view.findViewById(R.id.btn_hotwind);
+        Btn_extractorfan=view.findViewById(R.id.btn_extractorfan);
         LL_closetool=view.findViewById(R.id.ll_closetool);
         LL_hotwind=view.findViewById(R.id.ll_hotwind);
         LL_extractorfan=view.findViewById(R.id.ll_extractorfan);
@@ -148,8 +152,10 @@ public class BathroomFragment extends Fragment {
     private void updateHotwindStatus() {
         if (isHotwindOn) {
             Iv_hotwind.setSelected(true);
+            Btn_hotwind.setSelected(true);
         } else {
             Iv_hotwind.setSelected(false);
+            Btn_hotwind.setSelected(false);
         }
     }
 
@@ -157,16 +163,20 @@ public class BathroomFragment extends Fragment {
     private void updateExtractorfanStatus() {
         if (isExtractorfanOn) {
             Iv_extractorfan.setSelected(true);
+            Btn_extractorfan.setSelected(true);
         } else {
             Iv_extractorfan.setSelected(false);
+            Btn_extractorfan.setSelected(false);
         }
     }
 
     private void updateClosetoolStatus() {
         if (isClosetoolOn) {
             Iv_closetool.setSelected(true);
+            Btn_closetool.setSelected(true);
         } else {
             Iv_closetool.setSelected(false);
+            Btn_closetool.setSelected(false);
         }
     }
 
