@@ -41,177 +41,23 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:orientation="vertical"
                         android:gravity="center_horizontal"
                         android:layout_weight="1"
                         >
                         <ImageView
                             android:id="@+id/iv_aircon"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:background="@drawable/selector_aircon" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center_horizontal"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:id="@+id/tv_temp"
+                        <ImageView
+                            android:id="@+id/iv_switch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:layout_marginLeft="40dp"
-                            android:textSize="60sp"
-                            android:text="25"
+                            android:background="@drawable/switch_selector"
                             />
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="15dp"
-                                android:layout_height="20dp"
-                                android:layout_marginTop="20dp"
-                                android:background="@drawable/celsius" />
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal">
-                                <ImageView
-                                    android:id="@+id/iv_model"
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:background="@drawable/selector_airmodel"/>
-                                <TextView
-                                    android:id="@+id/tv_model"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="制冷"
-                                    />
-
-                            </LinearLayout>
-
-                        </LinearLayout>
-
 
                     </LinearLayout>
-
-                </LinearLayout>
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="20dp"
-                    >
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        >
-
-                        <LinearLayout
-                            android:id="@+id/airBnt"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/white2"
-                            android:layout_marginRight="1dp"
-                            android:layout_weight="1"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:id="@+id/iv_switch"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:background="@drawable/selector_shutdown" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:id="@+id/modelBnt"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                            android:background="@color/white2"
-                            android:layout_marginLeft="1dp"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="模式"
-                            />
-                    </LinearLayout>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="horizontal"
-                        >
-
-                        <LinearLayout
-                            android:id="@+id/decreaseBnt"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="1dp"
-                            android:layout_weight="1"
-                            android:background="@color/white2"
-                            android:gravity="center">
-
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="20dp"
-                                android:background="@drawable/minus" />
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@color/white2"
-                            android:layout_marginTop="1dp"
-
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            >
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="温度"
-                                />
-
-
-                        </LinearLayout>
-                        <LinearLayout
-                            android:id="@+id/increaseBnt"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="1dp"
-                            android:background="@color/white2"
-                            android:gravity="center"
-                            android:layout_weight="1"
-                            >
-                            <ImageView
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:background="@drawable/plus"
-                                />
-
-                        </LinearLayout>
-
-
-                    </LinearLayout>
-
 
 
                 </LinearLayout>
@@ -249,13 +95,20 @@
                 android:gravity="center"
                 android:background="@drawable/selector_round_corner"
                 android:orientation="vertical">
-
+                <ImageView
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/switch_selector"
+                    />
                 <ImageView
                     android:id="@+id/iv_socketpower"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_chazuo"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selector_chazuo"
                     />
 
                 <TextView
@@ -264,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="插座电源"
-                     />
+                    />
 
 
             </LinearLayout>
@@ -280,13 +133,20 @@
                 android:gravity="center"
                 android:background="@drawable/selector_round_corner"
                 android:orientation="vertical">
-
                 <ImageView
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/switch_selector"
+                    />
+                <ImageView
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
                     android:id="@+id/iv_usbpower"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_usb" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selector_usb" />
 
                 <TextView
                     android:id="@+id/tv_usbpower"
@@ -321,13 +181,20 @@
                 android:gravity="center"
                 android:background="@drawable/selector_round_corner"
                 android:orientation="vertical">
-
                 <ImageView
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/switch_selector"
+                    />
+                <ImageView
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
                     android:id="@+id/iv_colerglass"
-                    android:layout_width="100dp"
-                    android:layout_height="80dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/selector_bianseboli" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selector_bianseboli" />
 
                 <TextView
                     android:id="@+id/tv_colerglass"
@@ -335,6 +202,44 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="变色玻璃"
+                    />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_basspower"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:background="@drawable/selector_round_corner"
+                android:orientation="vertical">
+                <ImageView
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/switch_selector"
+                    />
+                <ImageView
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/iv_basspower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selector_diyindianyuan" />
+
+
+                <TextView
+                    android:id="@+id/tv_basspower"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="低音电源"
                     />
 
 
@@ -351,26 +256,435 @@
                 android:gravity="center"
                 android:background="@drawable/selector_round_corner"
                 android:orientation="vertical">
-
                 <ImageView
-                    android:id="@+id/iv_poweramplifier"
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/selector_gongfangdianyuan"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/switch_selector"
                     />
-
                 <ImageView
-                    android:id="@+id/iv_basspower"
-                    android:layout_width="80dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/selector_diyindianyuan" />
-
-
-
-
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/iv_poweramplifier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/selector_gongfangdianyuan"
+                    />
+                <TextView
+                    android:id="@+id/tv_poweramplifier"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="功放电源"
+                    />
             </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    android:background="@color/white2"-->
+<!--    android:orientation="horizontal"-->
+<!--    tools:context=".Fragment.Fragment_light">-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1.5"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="vertical">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_INV"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:background="@drawable/selector_round_corner"-->
+<!--                android:orientation="vertical">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    >-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:gravity="center_horizontal"-->
+<!--                        android:layout_weight="1"-->
+<!--                        >-->
+<!--                        <ImageView-->
+<!--                            android:id="@+id/iv_aircon"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:background="@drawable/selector_aircon" />-->
+
+<!--                    </LinearLayout>-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center_horizontal"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        >-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/tv_temp"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:textStyle="bold"-->
+<!--                            android:layout_marginLeft="40dp"-->
+<!--                            android:textSize="60sp"-->
+<!--                            android:text="25"-->
+<!--                            />-->
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:orientation="vertical">-->
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="15dp"-->
+<!--                                android:layout_height="20dp"-->
+<!--                                android:layout_marginTop="20dp"-->
+<!--                                android:background="@drawable/celsius" />-->
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="horizontal">-->
+<!--                                <ImageView-->
+<!--                                    android:id="@+id/iv_model"-->
+<!--                                    android:layout_width="20dp"-->
+<!--                                    android:layout_height="20dp"-->
+<!--                                    android:background="@drawable/selector_airmodel"/>-->
+<!--                                <TextView-->
+<!--                                    android:id="@+id/tv_model"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:text="制冷"-->
+<!--                                    />-->
+
+<!--                            </LinearLayout>-->
+
+<!--                        </LinearLayout>-->
+
+
+<!--                    </LinearLayout>-->
+
+<!--                </LinearLayout>-->
+
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:layout_marginLeft="20dp"-->
+<!--                    android:layout_marginRight="20dp"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    >-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        >-->
+
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/airBnt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginRight="1dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:background="@color/white2"-->
+<!--                            android:gravity="center">-->
+
+<!--                            <ImageView-->
+<!--                                android:id="@+id/iv_switch"-->
+<!--                                android:layout_width="25dp"-->
+<!--                                android:layout_height="25dp"-->
+<!--                                android:background="@drawable/selector_shutdown" />-->
+<!--                        </LinearLayout>-->
+
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/modelBnt"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                            android:background="@color/white2"-->
+<!--                            android:layout_marginLeft="1dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center"-->
+<!--                        >-->
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="模式"-->
+<!--                            />-->
+<!--                    </LinearLayout>-->
+<!--                    </LinearLayout>-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        >-->
+
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/decreaseBnt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginTop="1dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:background="@color/white2"-->
+<!--                            android:gravity="center">-->
+
+<!--                            <ImageView-->
+<!--                                android:layout_width="50dp"-->
+<!--                                android:layout_height="20dp"-->
+<!--                                android:background="@drawable/minus" />-->
+
+
+<!--                        </LinearLayout>-->
+
+<!--                        <LinearLayout-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:background="@color/white2"-->
+<!--                            android:layout_marginTop="1dp"-->
+
+<!--                            android:gravity="center"-->
+<!--                            android:layout_weight="1"-->
+<!--                            >-->
+<!--                            <TextView-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:text="温度"-->
+<!--                                />-->
+
+
+<!--                        </LinearLayout>-->
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/increaseBnt"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_marginTop="1dp"-->
+<!--                            android:background="@color/white2"-->
+<!--                            android:gravity="center"-->
+<!--                            android:layout_weight="1"-->
+<!--                            >-->
+<!--                            <ImageView-->
+<!--                                android:layout_width="50dp"-->
+<!--                                android:layout_height="50dp"-->
+<!--                                android:background="@drawable/plus"-->
+<!--                                />-->
+
+<!--                        </LinearLayout>-->
+
+
+<!--                    </LinearLayout>-->
+
+
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+
+
+<!--        </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_weight="1"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_socketpower"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@drawable/selector_round_corner"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_socketpower"-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:background="@drawable/selector_chazuo"-->
+<!--                    />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_socketpower"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="插座电源"-->
+<!--                     />-->
+
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_usbpower"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@drawable/selector_round_corner"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_usbpower"-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:background="@drawable/selector_usb" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_usbpower"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="双USB插座"-->
+<!--                    />-->
+
+
+<!--            </LinearLayout>-->
+
+
+<!--        </LinearLayout>-->
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:orientation="horizontal">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_colerglass"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@drawable/selector_round_corner"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_colerglass"-->
+<!--                    android:layout_width="100dp"-->
+<!--                    android:layout_height="80dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:background="@drawable/selector_bianseboli" />-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_colerglass"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="变色玻璃"-->
+<!--                    />-->
+
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_basspower"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@drawable/selector_round_corner"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_basspower"-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/selector_diyindianyuan" />-->
+
+
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_basspower"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="低音电源"-->
+<!--                    />-->
+
+
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/ll_power"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_marginLeft="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:layout_marginRight="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                android:gravity="center"-->
+<!--                android:background="@drawable/selector_round_corner"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_poweramplifier"-->
+<!--                    android:layout_width="80dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@drawable/selector_gongfangdianyuan"-->
+<!--                    />-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_poweramplifier"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_gravity="center_horizontal"-->
+<!--                    android:text="功放电源"-->
+<!--                    />-->
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+<!--    </LinearLayout>-->
+
+<!--</LinearLayout>-->

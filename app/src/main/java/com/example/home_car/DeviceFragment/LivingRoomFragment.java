@@ -29,8 +29,8 @@ public class LivingRoomFragment extends Fragment {
     private String mParam2;
 
     private TextView temperatureTextView,Tv_model;
-    private LinearLayout increaseButton,decreaseButton,airswitch,modelswitch,LL_socketpower;
-    private ImageView Iv_aircon,Iv_switch,Iv_model,Iv_socketpower,Iv_usbpower,Iv_colorglass,Iv_basspower,Iv_poweramplifier;
+    private LinearLayout increaseButton,decreaseButton,modelswitch,LL_socketpower;
+    private ImageView Iv_aircon,Iv_airswitch,Iv_model,Iv_socketpower,Iv_usbpower,Iv_colorglass,Iv_basspower,Iv_poweramplifier;
     private int temperature;
     private boolean isAirPowerOn;
     private boolean isCoolMode;
@@ -84,15 +84,15 @@ public class LivingRoomFragment extends Fragment {
 
         tcpClient = new TcpClient(getContext());
 
-        temperatureTextView=view.findViewById(R.id.tv_temp);
-        Tv_model=view.findViewById(R.id.tv_model);
-        increaseButton=view.findViewById(R.id.increaseBnt);
-        decreaseButton=view.findViewById(R.id.decreaseBnt);
-        airswitch=view.findViewById(R.id.airBnt);
-        modelswitch=view.findViewById(R.id.modelBnt);
+//        temperatureTextView=view.findViewById(R.id.tv_temp);
+//        Tv_model=view.findViewById(R.id.tv_model);
+//        increaseButton=view.findViewById(R.id.increaseBnt);
+//        decreaseButton=view.findViewById(R.id.decreaseBnt);
+//        airswitch=view.findViewById(R.id.airBnt);
+//        modelswitch=view.findViewById(R.id.modelBnt);
         Iv_aircon=view.findViewById(R.id.iv_aircon);
-        Iv_switch=view.findViewById(R.id.iv_switch);
-        Iv_model=view.findViewById(R.id.iv_model);
+        Iv_airswitch=view.findViewById(R.id.iv_switch);
+//        Iv_model=view.findViewById(R.id.iv_model);
         Iv_socketpower=view.findViewById(R.id.iv_socketpower);
         Iv_usbpower=view.findViewById(R.id.iv_usbpower);
         Iv_colorglass=view.findViewById(R.id.iv_colerglass);
@@ -102,17 +102,17 @@ public class LivingRoomFragment extends Fragment {
 
         sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
-        temperature = sharedPreferences.getInt(TEMPERATURE_KEY, MIN_TEMPERATURE);
+//        temperature = sharedPreferences.getInt(TEMPERATURE_KEY, MIN_TEMPERATURE);
         isAirPowerOn = sharedPreferences.getBoolean(AIRPOWER_KEY, false);
-        isCoolMode = sharedPreferences.getBoolean(MODE_KEY, true);
+//        isCoolMode = sharedPreferences.getBoolean(MODE_KEY, true);
         isSocketPowerOn = sharedPreferences.getBoolean(SOCKETPOWER_KEY, false);
         isUsbPowerOn = sharedPreferences.getBoolean(USBPOWER_KEY, false);
         isColorGlassOn = sharedPreferences.getBoolean(COLORGLASS_KEY, false);
         isBassPowerOn = sharedPreferences.getBoolean(BASSPOWER_KEY, false);
         isPowerAmplifierOn = sharedPreferences.getBoolean(POWERAMPLIFIER_KEY, false);
-        updateTemperatureDisplay();
+//        updateTemperatureDisplay();
         updateAirPowerStatus();
-        updateAirModeStatus();
+//        updateAirModeStatus();
         updateSocketPowerStatus();
         updateUsbPowerStatus();
         updateColorGlassStatus();
@@ -121,43 +121,43 @@ public class LivingRoomFragment extends Fragment {
 
 //        fetchAndUpdateHardwareData();//从硬件获取数据更新UI
 
-        increaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (temperature < MAX_TEMPERATURE) {
-                    temperature++;
-                    updateTemperatureDisplay();
-                    savePreferences();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tcpClient.sendTcpData();
+//        increaseButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (temperature < MAX_TEMPERATURE) {
+//                    temperature++;
+//                    updateTemperatureDisplay();
+//                    savePreferences();
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            tcpClient.sendTcpData();
+//
+//                        }
+//                    }).start();
+//                }
+//            }
+//        });
+//
+//        decreaseButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (temperature > MIN_TEMPERATURE) {
+//                    temperature--;
+//                    updateTemperatureDisplay();
+//                    savePreferences();
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            tcpClient.sendTcpData();
+//
+//                        }
+//                    }).start();
+//                }
+//            }
+//        });
 
-                        }
-                    }).start();
-                }
-            }
-        });
-
-        decreaseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (temperature > MIN_TEMPERATURE) {
-                    temperature--;
-                    updateTemperatureDisplay();
-                    savePreferences();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            tcpClient.sendTcpData();
-
-                        }
-                    }).start();
-                }
-            }
-        });
-
-        airswitch.setOnClickListener(new View.OnClickListener() {
+        Iv_airswitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isAirPowerOn = !isAirPowerOn;
@@ -172,21 +172,21 @@ public class LivingRoomFragment extends Fragment {
                 }).start();
             }
         });
-        modelswitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isCoolMode = !isCoolMode;
-                updateAirModeStatus();
-                savePreferences();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tcpClient.sendTcpData();
-
-                    }
-                }).start();
-            }
-        });
+//        modelswitch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                isCoolMode = !isCoolMode;
+//                updateAirModeStatus();
+//                savePreferences();
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        tcpClient.sendTcpData();
+//
+//                    }
+//                }).start();
+//            }
+//        });
         LL_socketpower.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -340,10 +340,10 @@ public class LivingRoomFragment extends Fragment {
 
     private void updateAirPowerStatus() {
         if (isAirPowerOn) {
-            Iv_switch.setSelected(true);
+            Iv_airswitch.setSelected(true);
             Iv_aircon.setSelected(true);
         } else {
-            Iv_switch.setSelected(false);
+            Iv_airswitch.setSelected(false);
             Iv_aircon.setSelected(false);
         }
     }
@@ -353,9 +353,9 @@ public class LivingRoomFragment extends Fragment {
     }
     private void savePreferences() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(TEMPERATURE_KEY, temperature);
+//        editor.putInt(TEMPERATURE_KEY, temperature);
         editor.putBoolean(AIRPOWER_KEY, isAirPowerOn);
-        editor.putBoolean(MODE_KEY, isCoolMode);
+//        editor.putBoolean(MODE_KEY, isCoolMode);
         editor.putBoolean(SOCKETPOWER_KEY, isSocketPowerOn);
         editor.putBoolean(USBPOWER_KEY, isUsbPowerOn);
         editor.putBoolean(COLORGLASS_KEY, isColorGlassOn);

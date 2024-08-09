@@ -44,7 +44,7 @@ public class Fragment_light extends Fragment {
     private static final String LIGHT_STATUS7 = "light_status7";
     private boolean islight1On,islight2On,islight3On,islight4On,islight5On,islight6On,islight7On;
     private LinearLayout LL_light1, LL_light2, LL_light3, LL_light4,LL_light5, LL_light6, LL_light7;
-    private ImageView Iv_light1, Iv_light2, Iv_light3, Iv_light4, Iv_light5, Iv_light6, Iv_light7;
+    private ImageView Iv_light1,Iv_switch_1, Iv_light2, Iv_light3, Iv_light4, Iv_light5, Iv_light6, Iv_light7;
     private TextView Tv_light1, Tv_light2, Tv_light3, Tv_light4, Tv_light5, Tv_light6, Tv_light7;
     private TcpClient tcpClient;
     private SharedPreferences sharedPreferences;
@@ -84,13 +84,15 @@ public class Fragment_light extends Fragment {
         tcpClient=new TcpClient(getContext());
 
         // 获取灯光开关控件
-        Tv_light1=view.findViewById(R.id.tv_light1);
-        Tv_light2=view.findViewById(R.id.tv_light2);
-        Tv_light3=view.findViewById(R.id.tv_light3);
-        Tv_light4=view.findViewById(R.id.tv_light4);
-        Tv_light5=view.findViewById(R.id.tv_light5);
-        Tv_light6=view.findViewById(R.id.tv_light6);
-        Tv_light7=view.findViewById(R.id.tv_light7);
+
+//        Tv_light1=view.findViewById(R.id.tv_light1);
+//        Tv_light2=view.findViewById(R.id.tv_light2);
+//        Tv_light3=view.findViewById(R.id.tv_light3);
+//        Tv_light4=view.findViewById(R.id.tv_light4);
+//        Tv_light5=view.findViewById(R.id.tv_light5);
+//        Tv_light6=view.findViewById(R.id.tv_light6);
+//        Tv_light7=view.findViewById(R.id.tv_light7);
+        Iv_switch_1=view.findViewById(R.id.iv_switch1);
         LL_light1 = view.findViewById(R.id.ll_light1);
         LL_light2 = view.findViewById(R.id.ll_light2);
         LL_light3 = view.findViewById(R.id.ll_light3);
@@ -122,6 +124,7 @@ public class Fragment_light extends Fragment {
         updateLightImagview(Iv_light5,islight5On);
         updateLightImagview(Iv_light6,islight6On);
         updateLightImagview(Iv_light7,islight7On);
+        updateLightImagview(Iv_switch_1,islight1On);
         updateLightLinearLayout(LL_light1,islight1On);
         updateLightLinearLayout(LL_light2,islight2On);
         updateLightLinearLayout(LL_light3,islight3On);
@@ -129,19 +132,20 @@ public class Fragment_light extends Fragment {
         updateLightLinearLayout(LL_light5,islight5On);
         updateLightLinearLayout(LL_light6,islight6On);
         updateLightLinearLayout(LL_light7,islight7On);
-        updateLightTextview(Tv_light1,islight1On);
-        updateLightTextview(Tv_light2,islight2On);
-        updateLightTextview(Tv_light3,islight3On);
-        updateLightTextview(Tv_light4,islight4On);
-        updateLightTextview(Tv_light5,islight5On);
-        updateLightTextview(Tv_light6,islight6On);
-        updateLightTextview(Tv_light7,islight7On);
+//        updateLightTextview(Tv_light1,islight1On);
+//        updateLightTextview(Tv_light2,islight2On);
+//        updateLightTextview(Tv_light3,islight3On);
+//        updateLightTextview(Tv_light4,islight4On);
+//        updateLightTextview(Tv_light5,islight5On);
+//        updateLightTextview(Tv_light6,islight6On);
+//        updateLightTextview(Tv_light7,islight7On);
         LL_light1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 islight1On=!islight1On;
                 updateLightImagview(Iv_light1,islight1On);
-                updateLightTextview(Tv_light1,islight1On);
+                updateLightImagview(Iv_switch_1,islight1On);
+//                updateLightTextview(Tv_light1,islight1On);
                 updateLightLinearLayout(LL_light1,islight1On);
                 savePreferences();
                 new Thread(new Runnable() {
@@ -159,7 +163,7 @@ public class Fragment_light extends Fragment {
             public void onClick(View v) {
                 islight2On=!islight2On;
                 updateLightImagview(Iv_light2,islight2On);
-                updateLightTextview(Tv_light2,islight2On);
+//                updateLightTextview(Tv_light2,islight2On);
                 updateLightLinearLayout(LL_light2,islight2On);
                 savePreferences();
                 new Thread(new Runnable() {
@@ -177,7 +181,7 @@ public class Fragment_light extends Fragment {
             public void onClick(View v) {
                 islight3On=!islight3On;
                 updateLightImagview(Iv_light3,islight3On);
-                updateLightTextview(Tv_light3,islight3On);
+//                updateLightTextview(Tv_light3,islight3On);
                 updateLightLinearLayout(LL_light3,islight3On);
                 savePreferences();
                 new Thread(new Runnable() {
@@ -195,7 +199,7 @@ public class Fragment_light extends Fragment {
             public void onClick(View v) {
                 islight4On=!islight4On;
                 updateLightImagview(Iv_light4,islight4On);
-                updateLightTextview(Tv_light4,islight4On);
+//                updateLightTextview(Tv_light4,islight4On);
                 updateLightLinearLayout(LL_light4,islight4On);
                 savePreferences();
                 new Thread(new Runnable() {
@@ -212,7 +216,7 @@ public class Fragment_light extends Fragment {
             public void onClick(View v) {
                 islight5On=!islight5On;
                 updateLightImagview(Iv_light5,islight5On);
-                updateLightTextview(Tv_light5,islight5On);
+//                updateLightTextview(Tv_light5,islight5On);
                 updateLightLinearLayout(LL_light5,islight5On);
                 savePreferences();
                 new Thread(new Runnable() {
@@ -229,7 +233,7 @@ public class Fragment_light extends Fragment {
             public void onClick(View v) {
                 islight6On=!islight6On;
                 updateLightImagview(Iv_light6,islight6On);
-                updateLightTextview(Tv_light6,islight6On);
+//                updateLightTextview(Tv_light6,islight6On);
                 updateLightLinearLayout(LL_light6,islight6On);
                 savePreferences();
                 new Thread(new Runnable() {
@@ -246,7 +250,7 @@ public class Fragment_light extends Fragment {
             public void onClick(View v) {
                 islight7On=!islight7On;
                 updateLightImagview(Iv_light7,islight7On);
-                updateLightTextview(Tv_light7,islight7On);
+//                updateLightTextview(Tv_light7,islight7On);
                 updateLightLinearLayout(LL_light7,islight7On);
                 savePreferences();
                 new Thread(new Runnable() {
@@ -288,15 +292,15 @@ public class Fragment_light extends Fragment {
             // 假设light_off是关灯时的图标
         }
     }
-    private void updateLightTextview(TextView textView,  boolean isOn) {
-        if (isOn) {
-            textView.setTextColor(getResources().getColor(R.color.white));
-            // 假设light_on是开灯时的图标
-        } else {
-            textView.setTextColor(getResources().getColor(R.color.black3));
-            // 假设light_off是关灯时的图标
-        }
-    }
+//    private void updateLightTextview(TextView textView,  boolean isOn) {
+//        if (isOn) {
+//            textView.setTextColor(getResources().getColor(R.color.white));
+//            // 假设light_on是开灯时的图标
+//        } else {
+//            textView.setTextColor(getResources().getColor(R.color.black3));
+//            // 假设light_off是关灯时的图标
+//        }
+//    }
     private void savePreferences() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(LIGHT_STATUS1, islight1On);

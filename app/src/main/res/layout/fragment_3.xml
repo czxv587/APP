@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/white2"
+    android:background="@drawable/content_bg"
     android:orientation="horizontal"
     tools:context=".Fragment.Fragment_light">
 
@@ -17,6 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
             android:layout_weight="1"
 
             android:orientation="vertical">
@@ -26,27 +28,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/selector_round_corner"
                 android:gravity="center"
                 android:orientation="vertical">
+                <ImageView
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:id="@+id/iv_switch_waterPump"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/switch_selector"
+                    />
 
                 <ImageView
-                    android:id="@+id/iv_waterPump"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
 
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/selector_shuiben"
-                    android:scaleType="fitStart" />
+                    android:id="@+id/iv_waterPump"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/selector_shuiben"
+                    android:scaleType="fitCenter" />
 
                 <TextView
                     android:id="@+id/tv_waterPump"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="水泵" />
 
             </LinearLayout>
@@ -65,6 +74,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -73,11 +84,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/selector_round_corner"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -85,13 +96,20 @@
                     android:gravity="center"
                     android:orientation="vertical"
                     android:layout_weight="0.55">
-
+                    <ImageView
+                        android:scaleType="fitCenter"
+                        android:adjustViewBounds="true"
+                        android:id="@+id/iv_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/switch_selector"
+                        />
                     <ImageView
                         android:id="@+id/iv_inverter"
                         android:layout_width="200dp"
                         android:layout_height="100dp"
                         android:layout_marginTop="20dp"
-                        android:background="@drawable/selector_nibianqi"
+                        android:src="@drawable/selector_nibianqi"
                         android:scaleType="fitStart" />
 
                     <TextView
@@ -101,134 +119,147 @@
                         android:text="逆变器" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:gravity="center"
+                    android:background="@drawable/round_coner_off"
+                    android:orientation="vertical"
+                    android:layout_weight="0.55">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="输入电压:" />
+                        <TextView
+                            android:id="@+id/inputVoltage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="5V" />
 
-                    <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="输入电压:" />
+                    </LinearLayout>
 
-                    <TextView
-                        android:id="@+id/inputVoltage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="5V" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="故障电压:" />
 
+                        <TextView
+                            android:id="@+id/faultVoltage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="10V" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textView3"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="输出电压:" />
+
+                        <TextView
+                            android:id="@+id/outputVoltage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="6V" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:text="负载百分比:" />
+
+                        <TextView
+                            android:id="@+id/loadPercentage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="80%" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/inputFrequency"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="输入频率:" />
+
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="100hz" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="电池电压:" />
+
+                        <TextView
+                            android:id="@+id/batteryVoltage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="7V" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+                        <TextView
+                            android:id="@+id/textView7"
+                            android:layout_width="70dp"
+                            android:layout_height="wrap_content"
+                            android:text="状态信息:" />
+
+                        <TextView
+                            android:id="@+id/statusInformation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="无" />
+                    </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="故障电压:" />
-
-                    <TextView
-                        android:id="@+id/faultVoltage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="10V" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="输出电压:" />
-
-                    <TextView
-                        android:id="@+id/outputVoltage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="6V" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:text="负载百分比:" />
-
-                    <TextView
-                        android:id="@+id/loadPercentage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="80%" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/inputFrequency"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="输入频率:" />
-
-                    <TextView
-                        android:id="@+id/textView12"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="100hz" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="电池电压:" />
-
-                    <TextView
-                        android:id="@+id/batteryVoltage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="7V" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
-                    <TextView
-                        android:id="@+id/textView7"
-                        android:layout_width="70dp"
-                        android:layout_height="wrap_content"
-                        android:text="状态信息:" />
-
-                    <TextView
-                        android:id="@+id/statusInformation"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="无" />
-                </LinearLayout>
 
 
 
